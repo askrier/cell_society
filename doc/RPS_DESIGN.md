@@ -18,4 +18,14 @@
    
    public void ReadFile(String fileName){}
    public Weapon PromptUser(){}
+   private void updateScores(int whoWon){}
+   private void resetGame(){}
    public static Main(String args[]){}
+   
+## USE CASES
+
+1) Main class calls resetGame()
+2) In Main class, the user is prompted for their choice of weapon
+3) After users choose their weapons, their weapons are compared and updateScore is called
+4) A new ReadFile is called and weapons are updated appropriately
+5) call resetGame() and call ReadFile()
