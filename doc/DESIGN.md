@@ -1,5 +1,5 @@
 # Simulation Design Final
-### Names
+### Claudia Chapman, Libba Lawrence, Andrew Krier, Alexander Uzochukwu
 
 ## Team Roles and Responsibilities
 
