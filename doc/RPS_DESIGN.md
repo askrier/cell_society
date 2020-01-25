@@ -13,6 +13,7 @@
   - processes the weapon file -> constructs all the weapons 
   - runs the simulation - automates a response based off of the weapon class chosen 
    - users choose the weapon they want to play in the game
+   - keep track of score for each round
    
    
    public void ReadFile(String fileName){}
