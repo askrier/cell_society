@@ -14,6 +14,7 @@ configuration is called.
 
 ## Overview
 
+![title](CRC_Design.png)
 
 ## User Interface
 
