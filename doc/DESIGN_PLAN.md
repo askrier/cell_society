@@ -101,8 +101,17 @@ The user interacts with the project by loading configuration files,
 
 * Each component introduced in overview:
     * Config
-         * Config handles reading in the file and gathering its information through a Scanner. ADD ON
+         * Config handles reading in the file and gathering its
+          information through a Scanner. The title and author of 
+          the data file are stored into global variables that will 
+          then be passed into the UI to be shown on the screen. This 
+          class collaborates with Simulation in order to implement the 
+          rules of the specific simulation. 
     * Cell
+        * Cell handles the information pertaining to each new cell that is created.
+         This class holds the cell’s name and the state of the cell. 
+         The cell class will also update the state of the cell in accordance 
+         with the simulation rules.
     * Grid
     * Simulation
     * Neighborhood
