@@ -84,6 +84,17 @@ Public Visualization () {}
 
 ## User Interface
 
+The user interacts with the project by loading configuration files,
+ pausing and resuming the simulation, and changing the speed of the animation 
+ rate. The project itself will show error warnings to the user if the file given
+  cannot be found, or if other important information is needed. In order to load
+   configuration files, the UI will have either a text input section or a drop 
+   down box in which the user can put/find the file path. The UI will have a
+    pause/play button for the user to start and stop the animation. The UI will
+     also have a speed up and slow down button to control the speed of the 
+     animation. All of these user interface features will be on a panel at the
+      bottom of the UI, below the grid of cells. 
+
 
 ## Design Details
 
