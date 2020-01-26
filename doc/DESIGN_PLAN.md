@@ -76,8 +76,61 @@ Public Visualization () {}
 
 ## User Interface
 
+The user interacts with the project by loading configuration files,
+ pausing and resuming the simulation, and changing the speed of the animation 
+ rate. The project itself will show error warnings to the user if the file given
+  cannot be found, or if other important information is needed. In order to load
+   configuration files, the UI will have either a text input section or a drop 
+   down box in which the user can put/find the file path. The UI will have a
+    pause/play button for the user to start and stop the animation. The UI will
+     also have a speed up and slow down button to control the speed of the 
+     animation. All of these user interface features will be on a panel at the
+      bottom of the UI, below the grid of cells. 
+
+![image](user_interface.jpeg)
 
 ## Design Details
+
+* Each component introduced in overview:
+
+    **Configuration**
+    
+    * This component handles reading in the file and gathering its
+    information through a Scanner. The title and author of 
+    the data file are stored into global variables that will 
+    then be passed into the UI to be shown on the screen. This component uses 
+    the file information to create the grid of cells that will be used in the simulation. This 
+    class collaborates with Simulation in order to implement the 
+    rules of the specific simulation. It could be extended to take in different 
+    types of files as well as more than one file at a time. 
+        * Cell
+            *  Cell handles the information pertaining to each new cell that is created.
+                This class holds the cell’s name and the state of the cell. 
+                The cell class will also have the ability to update the information
+                stored in the cell. 
+        
+        *   Grid
+            *   The Grid contains individual cells as a collection.    
+            
+    **Simulation**
+    
+    *   This component implements the rules of the specific simulation on the cells
+        in the grid. It takes into account each cell's neighborhood (which is dictated
+        by the simulation) and updates the state of the cell appropriately. It will use 
+        constructors for each simulation in order to obtain the rules. It will also use 
+        the grid collection (Either Array[][] or an object array). After the cells have been 
+        updated they are displayed to the screen by the Visualization component. It can be 
+        extended to implement different types of neighborhoods (Neighborhood class) and 
+        new simulations. 
+ 
+           * Neighborhood
+                * This class creates the different types of neighborhoods required for each simulation. 
+                The simulation classes themselves will be involved in the creation of neighborhoods/rules.
+                
+    **Visualization**   
+    * This component allows for the display of the 2D grid and any state changes to
+        the cells. It displays the UI and collaborates with the Main class to 
+        collect and display user input. 
 
 
 ## Design Considerations
