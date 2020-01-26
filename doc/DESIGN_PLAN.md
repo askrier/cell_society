@@ -99,6 +99,21 @@ The user interacts with the project by loading configuration files,
 
 ## Design Details
 
+* Each component introduced in overview:
+    * Config
+         * Config handles reading in the file and gathering its information through a Scanner. ADD ON
+    * Cell
+    * Grid
+    * Simulation
+    * Neighborhood
+    * Predator_Prey
+    * Percolation
+    * Fire
+    * GameOfLife
+    * Segregation
+    * Visualization
+
+
 ## Design Considerations
 
 #### Components
