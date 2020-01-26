@@ -95,9 +95,9 @@ The user interacts with the project by loading configuration files,
      animation. All of these user interface features will be on a panel at the
       bottom of the UI, below the grid of cells. 
 
+![image](user_interface.jpeg)
 
 ## Design Details
-
 
 ## Design Considerations
 
