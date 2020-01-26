@@ -125,12 +125,16 @@ The user interacts with the project by loading configuration files,
  
            * Neighborhood
                 * This class creates the different types of neighborhoods required for each simulation. 
-                The simulation classes themselves will be involved in the creation of neighborhoods/rules.
+                *   This component will have subclasses of each of the simulations that will override specific
+                    methods in order to implement different rules. 
                 
     **Visualization**   
     * This component allows for the display of the 2D grid and any state changes to
         the cells. It displays the UI and collaborates with the Main class to 
-        collect and display user input. 
+        collect and display user input. The resources that this component would use include
+        a drop down box, a start-stop button, and a speed button within the UI. It can be extended
+        to implement a grid of irregular size and shape because the animation of the grid is implemented
+        on a panel in the UI. 
 
 
 ## Design Considerations
