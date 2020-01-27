@@ -32,17 +32,24 @@ Method Signatures:
 
 ```java
 Configuration:
+Public class Main(){
+Public void setupInitialScreen() {}
+public void ReadFile( ) {}
+public void step(double elapsedTime)()
+}
+
+
 
 Public class Config( ) {
 public Config( ){}
-public ReadFile( ) {}
-public GetScanner() {}
 }
 
 Public class Cell(){
 Public Cell(){}
-Public getState() {}
-Public getName() {}
+Public getCurrentState() {}
+Public getNextState() {}
+Public String getName() {}
+Pubic updateCellValue(Neighborhood){}
 }
 
 
@@ -69,7 +76,6 @@ Public class Segregation () {}
 
 Public class Visualization () {
 Public Visualization () {}
-
 }
 ```
 	
@@ -90,6 +96,8 @@ The user interacts with the project by loading configuration files,
 ![image](user_interface.jpeg)
 
 ## Design Details
+
+#### Components
 
 * Each component introduced in overview:
 
@@ -137,18 +145,61 @@ The user interacts with the project by loading configuration files,
         on a panel in the UI. 
 
 
+#### Use Cases
+
+- Inside the for loop of the cells of the grid within simulation, call updateCellValue() passing in the neighborhood which
+will include the 8 neighboring cells. Inside updateCellValue() the nextState variable will be set to Dead and the 
+getCurrentState() will be called on neighboring cells. The new state will be shown in the visualization. 
+
+- Inside the for loop of the cells of the grid within simulation, call updateCellValue() passing in the neighborhood which
+  will include the 5 neighboring cells. Inside updateCellValue() the nextState variable will be set to Alive which will be
+  shown in the visualization and the getCurrentState() will be called on neighboring cells.
+  
+- Go through the for loop in the step method and call updateCellValue() on each cell in the grid. This will call getCurrentState()
+ on neighboring cells and update the states accordingly. Then visualization will be called on the grid.
+ 
+- This will happen inside of the ReadFile() method which is called in Main.
+
+- The button listener that was initialized in the setupInitialScreen() method will be triggered which will pause the running
+simulation and reconfigure the next game by calling ReadFile() and reset the game.
+
 ## Design Considerations
 
-#### Components
+1. How exactly is the information being passed through a file? We understand how data such as the # of cells or the configuration
+of the grid would be easily passed through a file and then into a method, but how are the rules of a specific instance of
+cellular automata passed in through a file. 
 
-#### Use Cases
+2. What are the different types of rules and how many possibilities are there? How many different rules can there be and 
+how do we implement them simultaneously?
+
+3. What are the different neighborhood possibilities?/Are there possibilities other than being on an edge, middle, or corner?
+No, but how are we going to account for the neighborhood types in our design and send in those neighboring cells.
+
+4. How are we naming the different states? For example, when there are more than 2 states, we cannot use a boolean. So, 
+we need to be aware of this.
+
+5. There are dependencies between the cells which causes us to think about how we are going to update the cell based on the 
+current state and not the one its changing to.
+
+####Assumptions
+- We are currently assuming that all of the files are formatted the same way, but if this is not the case, we will have 
+to make some changed to our design.
 
 
 ## Team Responsibilities
 
- * Team Member #1
+ * Claudia Chapman
+        - cell/grid/neighborhood
 
- * Team Member #2
+ * Libba Lawrence
+        - will be responsible for UI
+        - this includes setupInitialScreen(), readFile()
 
- * Team Member #3
+ * Andrew Krier
+        - Working with Libba on the readFile()/config stuff and also working on the main file and what public methods
+        are being called
+ 
+ * Alex Uzochukwu
+        - also simulation stuff/working with Claudia/ specifically simulation rules and how to create an expandable
+        architecture concerning this concept
 
