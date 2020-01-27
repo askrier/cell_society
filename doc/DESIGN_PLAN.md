@@ -126,6 +126,13 @@ The user interacts with the project by loading configuration files,
         *   Grid
             *   The Grid contains individual cells as a collection.    
             
+    * This component and functionality was selected to be a separate class to ensure 
+    that all the information whose source is the given XML file stays in the same place.
+    This is primarily an initializer that will have some implementation that will allow
+    it to be called at varying points in the simulation to load a new file, this can
+    accommodate the fourth and fifth test cases given since what the concern is for those
+    is in proper handling of an XML file, which should all be housed within this class.
+            
     **Simulation**
     
     *   This component implements the rules of the specific simulation on the cells
@@ -141,6 +148,10 @@ The user interacts with the project by loading configuration files,
                 * This class creates the different types of neighborhoods required for each simulation. 
                 *   This component will have subclasses of each of the simulations that will override specific
                     methods in order to implement different rules. 
+    *   This component makes all the decisions in the Automata. Centralizing this process will allow
+        middle and edge cells (as in use cases one and two) to be handled according to the 
+        rules held internal to this component. This would also make adjustment much simpler 
+        as long as what is passed to the visualization component remains the same.
                 
     **Visualization**   
     * This component allows for the display of the 2D grid and any state changes to
@@ -149,6 +160,11 @@ The user interacts with the project by loading configuration files,
         a drop down box, a start-stop button, and a speed button within the UI. It can be extended
         to implement a grid of irregular size and shape because the animation of the grid is implemented
         on a panel in the UI. 
+    * Visualization takes what it needs to display from the simulation component. This is to simplify
+        the divide and overall the delegation of the code. This component should also have the capacity
+        to send signals back to the simulation class so that a click or button press in the JavaFX
+        environment will appropriately affect the operation of the simulation. This implements use
+        case three in being able to handle moving to the next generation and display it graphically.
 
 
 #### Use Cases
