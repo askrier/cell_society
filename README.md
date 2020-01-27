@@ -3,7 +3,7 @@ simulation
 
 This project implements a cellular automata simulator.
 
-Names:
+Names: Claudia Chapman, Alexander Uzochukwu, Andrew Krier, Libba Lawrence
 
 ### Timeline
 
