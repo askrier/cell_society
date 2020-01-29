@@ -1,5 +1,12 @@
 package cellsociety;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -19,9 +26,7 @@ import javafx.util.Duration;
 
 
 
-/**
- * Feel free to completely change this code or delete it entirely.
- */
+//text -> user interface should be as resource files?
 public class Main extends Application{
 
     public static final int FRAMES_PER_SECOND = 60;
@@ -58,9 +63,17 @@ public class Main extends Application{
         animation.play();
     }
 
-    private Text getSplashText() {
+    private Text getSplashText() throws IOException {
         Text gameName = new Text();
-        gameName.setText("Cellular Automata");
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("Resources/UserInterface.properties"));
+        Set p = properties.keySet();
+        Iterator i = p.iterator();
+        String key = "";
+        while(i.hasNext()){
+            key = (String)i.next();
+        }
+        gameName.setText(properties.getProperty(key));
         gameName.setFont(Font.font(50));
         gameName.setTextAlignment(TextAlignment.CENTER);
         return gameName;
