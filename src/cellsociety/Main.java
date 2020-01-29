@@ -55,7 +55,7 @@ public class Main extends Application {
       @Override
       public void handle(ActionEvent event) {
            FileChooser fileChooser = new FileChooser();
-           Button browse = new Button("Browse...");
+          Button browse = getBrowseButton();
           browse.setOnAction(new EventHandler<ActionEvent>() {
               @Override
               public void handle(ActionEvent event) {
@@ -80,7 +80,7 @@ public class Main extends Application {
     animation.play();
   }
 
-  private Text getSplashText() throws IOException {
+    private Text getSplashText() throws IOException {
     Text gameName = new Text();
     Properties properties = new Properties();
     properties.load(new FileInputStream("Resources/UserInterface.properties"));
@@ -95,8 +95,14 @@ public class Main extends Application {
     gameName.setTextAlignment(TextAlignment.CENTER);
     return gameName;
   }
+    private Button getBrowseButton() {
+      Button browse = new Button("Browse...");
+      browse.setLayoutX(700);
+      browse.setLayoutY(HEIGHT-100);
+      return browse;
+    }
 
-  public Button start() {
+  private Button start() {
     Button startButton = new Button();
     startButton.setText("Play");
     startButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
@@ -123,7 +129,7 @@ public class Main extends Application {
   }
 
 
-  public Button playSim() {
+  private Button playSim() {
     Button playButton = new Button();
     playButton.setText("Play");
     playButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
@@ -138,7 +144,7 @@ public class Main extends Application {
     return playButton;
   }
 
-  public Button stopSim() {
+  private Button stopSim() {
     Button stopButton = new Button();
     stopButton.setText("Stop");
     stopButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
@@ -153,7 +159,7 @@ public class Main extends Application {
     return stopButton;
   }
 
-  public Button slowDown() {
+  private Button slowDown() {
     Button slowButton = new Button();
     slowButton.setText("Slow");
     slowButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
@@ -168,7 +174,7 @@ public class Main extends Application {
     return slowButton;
   }
 
-  public Button speedUp() {
+  private Button speedUp() {
     Button speedButton = new Button();
     speedButton.setText("Speed");
     speedButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
@@ -183,7 +189,7 @@ public class Main extends Application {
     return speedButton;
   }
 
-  public Button stepThrough() {
+  private Button stepThrough() {
     Button stepButton = new Button();
     stepButton.setText("Step");
     stepButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
