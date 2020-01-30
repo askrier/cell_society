@@ -66,7 +66,6 @@ public class Main extends Application {
                   }
               }
           });
-
         Scene initialScene = setUpInitialScreen(WIDTH, HEIGHT, BACKGROUND);
           root.getChildren().add(browse);
         stage.setScene(initialScene);
@@ -138,6 +137,7 @@ public class Main extends Application {
     playButton.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
+        //call simulation to create grid
         animation.play();
       }
     });
