@@ -4,6 +4,10 @@
     <year_published>2000</year_published>
     <cell_sides>4</cell_sides>
     <cell_rows>5</cell_rows>
+    <!--# of rows defines how many times to iterate through-->
+    <!--each row defines how long it should be to form the shape-->
+    <!--this allows hexagons and triangles to be implemented much faster-->
+    <!--also permits different shapes for the square cells as well-->
     <row1_vals>
         <row_length>6</row_length>
         <value>2</value>
