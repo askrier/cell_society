@@ -13,7 +13,7 @@ public class SimData {
             "cell_sides",
             "cell_rows",
             "num_cells",
-            "row1_vals"
+            "row_vals"
     );
 
     private String mySimType;
