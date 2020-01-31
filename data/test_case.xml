@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <data game="test_case">
     <author>this dude</author>
-    <year_published>2000</year_published>
     <cell_sides>4</cell_sides>
     <cell_rows>5</cell_rows>
     <num_cells>30</num_cells>
