@@ -55,6 +55,7 @@ public class VisualizationView {
 
   public VisualizationView(VisualizationModel model){
     myModel = model;
+    myGrid = myModel.getGrid();
   }
 
   /**
@@ -63,7 +64,7 @@ public class VisualizationView {
   public Scene makeScene (int width, int height) {
     BorderPane root = new BorderPane();
     // must be first since other panels may refer to page
-    root.setCenter(showPage(myGrid));
+    root.setCenter(myGrid.r);
     root.setTop(makeInputPanel());
     //root.setBottom(makeInformationPanel());
     // create scene to hold UI
@@ -110,6 +111,7 @@ public class VisualizationView {
    * Display given Grid
    */
   public Node showPage (Grid grid) {
+    System.out.println(myGrid);
     GridPane gridPane = new GridPane();
     if (grid != null) {
       update(grid);

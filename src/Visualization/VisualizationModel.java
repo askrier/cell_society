@@ -15,14 +15,15 @@ public class VisualizationModel {
   public VisualizationModel() {
     myFileURL = null;
     myGrid = null;
-  }
+}
 
   public void getFile (String file){
     myFileURL = file;
   }
 
-  public void getGrid(Grid grid){
-      myGrid = grid;
+  public Grid getGrid(){
+      myGrid = new Grid(5,5,5,5,"hello");
+      return myGrid;
   }
 
 

@@ -49,37 +49,34 @@ public class Main extends Application {
     // create program specific components
     VisualizationModel model = new VisualizationModel();
     VisualizationView display = new VisualizationView(model);
-    stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
+
+    VBox layout = new VBox(WIDTH / 2);
+    Button startButton = start();
+    Text gameName = getSplashText();
+    layout.getChildren().add(startButton);
+    layout.getChildren().add(gameName);
+    Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
+    stage.setScene(myScene);
     stage.show();
-//    VBox layout = new VBox(WIDTH / 2);
-//    Button startButton = start();
-//    Text gameName = getSplashText();
-//    layout.getChildren().add(startButton);
-//    layout.getChildren().add(gameName);
-//    Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
-//    stage.setScene(myScene);
-//    stage.show();
-//    startButton.setOnAction(new EventHandler<ActionEvent>() {
-//      @Override
-//      public void handle(ActionEvent event) {
-//           FileChooser fileChooser = new FileChooser();
-//          Button browse = getBrowseButton();
-//          browse.setOnAction(new EventHandler<ActionEvent>() {
-//              @Override
-//              public void handle(ActionEvent event) {
-//                  File file = fileChooser.showOpenDialog(stage);
-//                  if(file!=null){
-//                      //pass to andrew
-//                      System.out.println(file);
-//                  }
-//              }
-//          });
-//        Scene initialScene = setUpInitialScreen(WIDTH, HEIGHT, BACKGROUND);
-//          root.getChildren().add(browse);
-//        stage.setScene(initialScene);
-//        stage.show();
-//      }
-//    });
+    startButton.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+           FileChooser fileChooser = new FileChooser();
+          Button browse = getBrowseButton();
+          browse.setOnAction(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                  File file = fileChooser.showOpenDialog(stage);
+                  if(file!=null){
+                      //pass to andrew
+                      System.out.println(file);
+                  }
+              }
+          });
+        stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
+        stage.show();
+      }
+    });
     KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
     animation = new Timeline();
     animation.setCycleCount(Timeline.INDEFINITE);
@@ -90,7 +87,7 @@ public class Main extends Application {
     private Text getSplashText() throws IOException {
     Text gameName = new Text();
     Properties properties = new Properties();
-    properties.load(new FileInputStream("Resources/UserInterface.properties"));
+    properties.load(new FileInputStream("src/resources/UserInterface.properties"));
     Set p = properties.keySet();
     Iterator i = p.iterator();
     String key = "";
