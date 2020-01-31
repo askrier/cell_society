@@ -28,10 +28,20 @@ public class VisualizationModel {
 
 
   /**
-   * Returns the next state of grid
+   * Returns the state of grid
    */
   public Grid start () {
-    if (hasNext()) {
+    if (has()) {
+      return myGrid;
+    }
+    return null;
+  }
+  /**
+   * Returns the next state of grid
+   */
+  public Grid next(){
+    if(hasNext()) {
+      myGrid.update();
       return myGrid;
     }
     return null;
@@ -40,8 +50,11 @@ public class VisualizationModel {
   /**
    * Returns true if there is a next Grid available
    */
-  public boolean hasNext () {
+  public boolean has () {
     return myGrid.exists;
   }
 
+  public boolean hasNext(){
+    return myGrid.update = true;
+  }
 }

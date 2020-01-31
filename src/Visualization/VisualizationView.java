@@ -39,7 +39,7 @@ public class VisualizationView {
   private static final String RESOURCES = "resources";
   public static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
   public static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
-  public static final String STYLESHEET = "";
+  public static final String STYLESHEET = "default.css";
 
   private ResourceBundle myResources;
   //scene to send to application
@@ -88,7 +88,7 @@ public class VisualizationView {
 
   // move to the next URL in the history
   private void start () {
-    update(myModel.start());
+    update(myModel.next());
   }
 
   // update just the view to display next state
@@ -118,9 +118,6 @@ public class VisualizationView {
       }
     });
     result.getChildren().add(browseFolder);
-    // if user presses button or enter in text field, load/show the Grid
-  //  ShowPage showHandler = new ShowPage();
-  //  result.getChildren().add(makeButton("GoCommand", showHandler));
     return result;
   }
 

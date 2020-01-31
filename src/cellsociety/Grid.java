@@ -8,11 +8,17 @@ import javafx.scene.shape.Rectangle;
 public class Grid {
     ArrayList<Cell> myArrayOfCells = new ArrayList<Cell>();
     public boolean exists;
+    public boolean update;
     public Rectangle r;
     public Grid(int height, int width, int vCellNum, int hCellNum, String gameVariation){
         exists = true;
         r = new Rectangle(500,500,500,500);
         r.setFill(Color.LIGHTCORAL);
+        update = false;
+        update();
 
+    }
+    public void update(){
+        if(update == true) r.setFill(Color.DARKGREEN);
     }
 }

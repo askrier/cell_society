@@ -49,7 +49,6 @@ public class Main extends Application {
     // create program specific components
     VisualizationModel model = new VisualizationModel();
     VisualizationView display = new VisualizationView(model);
-
     VBox layout = new VBox(WIDTH / 2);
     Button startButton = start();
     Text gameName = getSplashText();
@@ -61,18 +60,6 @@ public class Main extends Application {
     startButton.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
-//           FileChooser fileChooser = new FileChooser();
-//          Button browse = getBrowseButton();
-//          browse.setOnAction(new EventHandler<ActionEvent>() {
-//              @Override
-//              public void handle(ActionEvent event) {
-//                  File file = fileChooser.showOpenDialog(stage);
-//                  if(file!=null){
-//                      //pass to andrew
-//                      System.out.println(file);
-//                  }
-//              }
-//          });
         stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
         stage.show();
       }
@@ -120,6 +107,7 @@ public class Main extends Application {
   }
 
   public void step(double elapsedTime) {
+  //  myGrid.update();
   }
 
 
