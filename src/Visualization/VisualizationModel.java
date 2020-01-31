@@ -2,14 +2,18 @@ package Visualization;
 
 import cellsociety.Cell;
 import cellsociety.Grid;
+import cellsociety.Main;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 public class VisualizationModel {
 
-  private Grid myGrid;
+  public Grid myGrid;
   private String myFileURL;
 
   public VisualizationModel() {
@@ -26,7 +30,6 @@ public class VisualizationModel {
       return myGrid;
   }
 
-
   /**
    * Returns the state of grid
    */
@@ -36,15 +39,36 @@ public class VisualizationModel {
     }
     return null;
   }
+
   /**
    * Returns the next state of grid
    */
   public Grid next(){
+    Main.animation.play();
     if(hasNext()) {
       myGrid.update();
       return myGrid;
     }
     return null;
+  }
+
+  public void end(){
+     Main.animation.stop();
+  }
+  public boolean slow(){
+    Main.animation.setRate(.5);
+    return true;
+  }
+  public boolean speed(){
+    Main.animation.setRate(10);
+    return true;
+  }
+  public void stepThrough(){
+//    Main.animation.play();
+    Main.animation.setCycleCount(1);
+
+
+
   }
 
   /**
@@ -55,6 +79,6 @@ public class VisualizationModel {
   }
 
   public boolean hasNext(){
-    return myGrid.update = true;
+    return myGrid.update;
   }
 }

@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -52,7 +53,7 @@ public class VisualizationView {
   private Button slowSimulation;
   private Button stepSimulation;
   private Button browseFolder;
-  private Grid myGrid;
+  public Grid myGrid;
   private Scene myPage;
   // create model data
   private VisualizationModel myModel;
@@ -88,12 +89,29 @@ public class VisualizationView {
 
   // move to the next URL in the history
   private void start () {
-    update(myModel.next());
+    myModel.next();
+  }
+  private void stop(){
+    myModel.end();
+  }
+  private void slow(){
+    myModel.slow();
+  }
+  private void speed(){
+    myModel.speed();
+  }
+  private void stepThrough(){
+    myModel.stepThrough();
   }
 
+
+
   // update just the view to display next state
-  private void update (Grid grid) {
-    showPage(grid);
+  //I THINK UPDATE IS CONTINUOUSLY CALLED
+  private Node update (Grid grid) {
+    GridPane gridPane = new GridPane();
+    gridPane.getChildren().add(grid.r);
+    return gridPane;
   }
 
 
@@ -103,9 +121,16 @@ public class VisualizationView {
     startSimulation = makeButton("Start", event -> start());
     result.getChildren().add(startSimulation);
     // new style way to do set up callback (lambdas)
-    stopSimulation = makeButton("Stop", null);
+    stopSimulation = makeButton("Stop", event -> stop());
     result.getChildren().add(stopSimulation);
     FileChooser fileChooser = new FileChooser();
+    slowSimulation = makeButton("Slow",event -> slow());
+    result.getChildren().add(slowSimulation);
+    speedSimulation = makeButton("Speed", event-> speed());
+    result.getChildren().add(speedSimulation);
+    stepSimulation = makeButton("Step", event -> stepThrough());
+    result.getChildren().add(stepSimulation);
+    //result.getChildren().add(new Text("hi"));
     browseFolder = makeButton("Browse", new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
@@ -113,6 +138,7 @@ public class VisualizationView {
         File file = fileChooser.showOpenDialog(stage);
         if(file!=null){
           //pass to andrew
+          //xaml parser
           System.out.println(file);
         }
       }
@@ -124,17 +150,15 @@ public class VisualizationView {
   /**
    * Display given Grid
    */
-  public Node showPage (Grid grid) {
-    System.out.println(myGrid);
-    GridPane gridPane = new GridPane();
+  public void showPage (Grid grid) {
+
     if (grid != null) {
       update(grid);
-      gridPane.getChildren().add(grid.r);
     }
     else {
       showError("Could not load grid");
     }
-    return gridPane;
+
   }
 
   private class ShowPage implements EventHandler<ActionEvent> {

@@ -10,15 +10,26 @@ public class Grid {
     public boolean exists;
     public boolean update;
     public Rectangle r;
+    public int c;
+    public int g;
     public Grid(int height, int width, int vCellNum, int hCellNum, String gameVariation){
         exists = true;
-        r = new Rectangle(500,500,500,500);
+        r = new Rectangle(50,5,500,500);
         r.setFill(Color.LIGHTCORAL);
-        update = false;
-        update();
-
+        update = true;
+         c =0;
+         g =0;
     }
     public void update(){
-        if(update == true) r.setFill(Color.DARKGREEN);
-    }
+
+
+        if(update ==true){
+            c+=1;
+            g+=1;
+            r.setFill(Color.rgb(c,g,4));
+            if(c ==255){
+                update = false;
+            }
+           // r.setFill(Color.rgb(c, g, 1));
+    }}
 }
