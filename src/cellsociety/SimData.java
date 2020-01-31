@@ -1,5 +1,6 @@
 package cellsociety;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,15 @@ public class SimData {
         myTotalCells = totalCells;
         myCellVals = cellVals;
         myDataValues = new HashMap<>();
+    }
+
+    public SimData (Map<String, String> dataValues) {
+        this(dataValues.get(DATA_FIELDS.get(0)),
+                dataValues.get(DATA_FIELDS.get(1)),
+                Integer.parseInt(dataValues.get(DATA_FIELDS.get(2))),
+                Integer.parseInt(dataValues.get(DATA_FIELDS.get(3))),
+                null);
+        myDataValues = dataValues;
     }
 
     public String getSimType () { return mySimType; }
