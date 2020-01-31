@@ -1,6 +1,7 @@
 package Visualization;
 
 import cellsociety.Grid;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -23,7 +24,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import javax.swing.JWindow;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -101,6 +105,19 @@ public class VisualizationView {
     // new style way to do set up callback (lambdas)
     stopSimulation = makeButton("Stop", null);
     result.getChildren().add(stopSimulation);
+    FileChooser fileChooser = new FileChooser();
+    browseFolder = makeButton("Browse", new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        Stage stage = new Stage();
+        File file = fileChooser.showOpenDialog(stage);
+        if(file!=null){
+          //pass to andrew
+          System.out.println(file);
+        }
+      }
+    });
+    result.getChildren().add(browseFolder);
     // if user presses button or enter in text field, load/show the Grid
   //  ShowPage showHandler = new ShowPage();
   //  result.getChildren().add(makeButton("GoCommand", showHandler));

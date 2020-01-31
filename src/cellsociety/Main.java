@@ -61,18 +61,18 @@ public class Main extends Application {
     startButton.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
-           FileChooser fileChooser = new FileChooser();
-          Button browse = getBrowseButton();
-          browse.setOnAction(new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent event) {
-                  File file = fileChooser.showOpenDialog(stage);
-                  if(file!=null){
-                      //pass to andrew
-                      System.out.println(file);
-                  }
-              }
-          });
+//           FileChooser fileChooser = new FileChooser();
+//          Button browse = getBrowseButton();
+//          browse.setOnAction(new EventHandler<ActionEvent>() {
+//              @Override
+//              public void handle(ActionEvent event) {
+//                  File file = fileChooser.showOpenDialog(stage);
+//                  if(file!=null){
+//                      //pass to andrew
+//                      System.out.println(file);
+//                  }
+//              }
+//          });
         stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
         stage.show();
       }
@@ -83,7 +83,6 @@ public class Main extends Application {
     animation.getKeyFrames().add(frame);
     animation.play();
   }
-
     private Text getSplashText() throws IOException {
     Text gameName = new Text();
     Properties properties = new Properties();
@@ -115,93 +114,6 @@ public class Main extends Application {
     return startButton;
   }
 
-
-  public Scene setUpInitialScreen(double width, double height, Paint background) {
-    root = new Group();
-    Button playButton = playSim();
-    Button stopButton = stopSim();
-    Button slowButton = slowDown();
-    Button speedButton = speedUp();
-    Button stepButton = stepThrough();
-    root.getChildren().add(playButton);
-    root.getChildren().add(stopButton);
-    root.getChildren().add(slowButton);
-    root.getChildren().add(speedButton);
-    root.getChildren().add(stepButton);
-    Scene scene = new Scene(root, width, height, background);
-    return scene;
-  }
-
-
-  private Button playSim() {
-    Button playButton = new Button();
-    playButton.setText("Play");
-    playButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
-    playButton.setLayoutX(0);
-    playButton.setLayoutY(HEIGHT - 100);
-    playButton.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        //call simulation to create grid
-        animation.play();
-      }
-    });
-    return playButton;
-  }
-
-  private Button stopSim() {
-    Button stopButton = new Button();
-    stopButton.setText("Stop");
-    stopButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
-    stopButton.setLayoutX(100);
-    stopButton.setLayoutY(HEIGHT - 100);
-    stopButton.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        animation.stop();
-      }
-    });
-    return stopButton;
-  }
-
-  private Button slowDown() {
-    Button slowButton = new Button();
-    slowButton.setText("Slow");
-    slowButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
-    slowButton.setLayoutX(200);
-    slowButton.setLayoutY(HEIGHT - 100);
-    slowButton.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        FRAMES_PER_SECOND = 100;
-      }
-    });
-    return slowButton;
-  }
-
-  private Button speedUp() {
-    Button speedButton = new Button();
-    speedButton.setText("Speed");
-    speedButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
-    speedButton.setLayoutX(300);
-    speedButton.setLayoutY(HEIGHT - 100);
-    speedButton.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        FRAMES_PER_SECOND = 4;
-      }
-    });
-    return speedButton;
-  }
-
-  private Button stepThrough() {
-    Button stepButton = new Button();
-    stepButton.setText("Step");
-    stepButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
-    stepButton.setLayoutX(400);
-    stepButton.setLayoutY(HEIGHT - 100);
-    return stepButton;
-  }
 
 
   public void ReadFile() {
