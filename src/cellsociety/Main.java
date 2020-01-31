@@ -28,7 +28,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-//text -> user interface should be as resource files?
 public class Main extends Application {
 
   public static int FRAMES_PER_SECOND = 60;
