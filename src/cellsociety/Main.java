@@ -1,6 +1,9 @@
 package cellsociety;
 
+import Visualization.VisualizationModel;
+import Visualization.VisualizationView;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,39 +41,45 @@ public class Main extends Application {
   public static final Paint BACKGROUND = Color.GRAY;
   public static Timeline animation;
   public Group root;
+  public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
   private Desktop desktop = Desktop.getDesktop();
 
   @Override
   public void start(Stage stage) throws Exception {
-    VBox layout = new VBox(WIDTH / 2);
-    Button startButton = start();
-    Text gameName = getSplashText();
-    layout.getChildren().add(startButton);
-    layout.getChildren().add(gameName);
-    Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
-    stage.setScene(myScene);
+    // create program specific components
+    VisualizationModel model = new VisualizationModel();
+    VisualizationView display = new VisualizationView(model);
+    stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
     stage.show();
-    startButton.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-           FileChooser fileChooser = new FileChooser();
-          Button browse = getBrowseButton();
-          browse.setOnAction(new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent event) {
-                  File file = fileChooser.showOpenDialog(stage);
-                  if(file!=null){
-                      //pass to andrew
-                      System.out.println(file);
-                  }
-              }
-          });
-        Scene initialScene = setUpInitialScreen(WIDTH, HEIGHT, BACKGROUND);
-          root.getChildren().add(browse);
-        stage.setScene(initialScene);
-        stage.show();
-      }
-    });
+//    VBox layout = new VBox(WIDTH / 2);
+//    Button startButton = start();
+//    Text gameName = getSplashText();
+//    layout.getChildren().add(startButton);
+//    layout.getChildren().add(gameName);
+//    Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
+//    stage.setScene(myScene);
+//    stage.show();
+//    startButton.setOnAction(new EventHandler<ActionEvent>() {
+//      @Override
+//      public void handle(ActionEvent event) {
+//           FileChooser fileChooser = new FileChooser();
+//          Button browse = getBrowseButton();
+//          browse.setOnAction(new EventHandler<ActionEvent>() {
+//              @Override
+//              public void handle(ActionEvent event) {
+//                  File file = fileChooser.showOpenDialog(stage);
+//                  if(file!=null){
+//                      //pass to andrew
+//                      System.out.println(file);
+//                  }
+//              }
+//          });
+//        Scene initialScene = setUpInitialScreen(WIDTH, HEIGHT, BACKGROUND);
+//          root.getChildren().add(browse);
+//        stage.setScene(initialScene);
+//        stage.show();
+//      }
+//    });
     KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
     animation = new Timeline();
     animation.setCycleCount(Timeline.INDEFINITE);
