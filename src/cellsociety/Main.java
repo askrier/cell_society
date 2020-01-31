@@ -34,21 +34,24 @@ import javafx.util.Duration;
 public class Main extends Application {
 
   public static int FRAMES_PER_SECOND = 60;
-  public static final int MILLISECOND_DELAY = 400 / FRAMES_PER_SECOND;
-  public static final double SECOND_DELAY = 3.0 / FRAMES_PER_SECOND;
+  public static int MILLISECOND_DELAY = 800 / FRAMES_PER_SECOND;
+  public static double SECOND_DELAY = 5.0 / FRAMES_PER_SECOND;
   public static final double WIDTH = 800;
   public static final double HEIGHT = 800;
   public static final Paint BACKGROUND = Color.GRAY;
   public static Timeline animation;
+  public static KeyFrame frame;
   public Group root;
   public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
   private Desktop desktop = Desktop.getDesktop();
+  private VisualizationModel model;
+  private  VisualizationView display;
 
   @Override
   public void start(Stage stage) throws Exception {
     // create program specific components
-    VisualizationModel model = new VisualizationModel();
-    VisualizationView display = new VisualizationView(model);
+    model = new VisualizationModel();
+    display = new VisualizationView(model);
     VBox layout = new VBox(WIDTH / 2);
     Button startButton = start();
     Text gameName = getSplashText();
@@ -62,13 +65,12 @@ public class Main extends Application {
       public void handle(ActionEvent event) {
         stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
         stage.show();
-      }
-    });
-    KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
+    frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
     animation = new Timeline();
     animation.setCycleCount(Timeline.INDEFINITE);
     animation.getKeyFrames().add(frame);
-    animation.play();
+      }
+    });
   }
     private Text getSplashText() throws IOException {
     Text gameName = new Text();
@@ -104,10 +106,11 @@ public class Main extends Application {
 
 
   public void ReadFile() {
+
   }
 
   public void step(double elapsedTime) {
-  //  myGrid.update();
+    model.myGrid.update();
   }
 
 
