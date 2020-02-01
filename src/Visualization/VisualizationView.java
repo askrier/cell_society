@@ -77,7 +77,7 @@ public class VisualizationView {
 
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
 
-    for(ArrayList list: myGrid.getListOfCells()) {
+    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
       for (Cell cell : list) {
        root.setCenter(cell);
       }
@@ -126,7 +126,7 @@ public class VisualizationView {
     //add the grid bricks to the root so that they can be updated and changed, this is the simulation grid
 
 
-    for(ArrayList list: myGrid.getListOfCells()) {
+    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
       for (Cell cell : list) {
         gridPane.getChildren().add(cell);
       }

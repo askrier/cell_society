@@ -37,8 +37,8 @@ public class Grid {
     }
 
     public <T extends Cell> Cell getInstance(Class<T> gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Cell alert = gameVariation.getDeclaredConstructor().newInstance();
-        return alert;
+        Cell cell = gameVariation.getDeclaredConstructor().newInstance();
+        return cell;
     }
 
     public ArrayList<ArrayList<Cell>> getListOfCells(){
