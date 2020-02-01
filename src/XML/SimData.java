@@ -1,4 +1,4 @@
-package cellsociety;
+package XML;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,27 +14,24 @@ public class SimData {
             "cell_sides",
             "cell_rows",
             "cell_columns",
-            "num_cells",
             "vals"
     );
 
     private String mySimType;
     private String myAuthor;
     private int myCellSides;
-    private int myTotalCells;
     private int myCellRows;
     private int myCellColumns;
     private int myVals;
     private List<List<Integer>> myCellVals;
     private Map<String, String> myDataValues;
 
-    public SimData (String author, String simType, int cellSides, int cellRows, int cellColumns, int totalCells, int vals, List<List<Integer>> cellVals) {
+    public SimData (String author, String simType, int cellSides, int cellRows, int cellColumns, int vals, List<List<Integer>> cellVals) {
         mySimType = simType;
         myAuthor = author;
         myCellSides = cellSides;
         myCellRows = cellRows;
         myCellColumns = cellColumns;
-        myTotalCells = totalCells;
         myCellVals = cellVals;
         myVals = vals;
         myDataValues = new HashMap<>();
@@ -47,7 +44,6 @@ public class SimData {
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(3))),
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(4))),
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(5))),
-                Integer.parseInt(dataValues.get(DATA_FIELDS.get(6))),
                 null);
         setVals();
         myDataValues = dataValues;
@@ -62,8 +58,6 @@ public class SimData {
     public int getRows () { return myCellRows; }
 
     public int getColumns () { return myCellColumns; }
-
-    public int getNumCells () { return myTotalCells; }
 
     public List<List<Integer>> getValList () { return myCellVals; }
 
