@@ -56,7 +56,7 @@ public abstract class Cell extends Polygon {
      */
     protected void populateNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int[] cellCoordinate){
         if(cellCoordinate[0] >= 0 || cellCoordinate[0] <= gridOfCells.size()-1 ){
-            if (cellCoordinate[1] >= 0 || cellCoordinate[0] <= gridOfCells.get(cellCoordinate[0]).size()-1){
+            if (cellCoordinate[1] >= 0 || cellCoordinate[1] <= gridOfCells.get(cellCoordinate[0]).size()-1){
                 neighborArray.add(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]));
             }
         }
