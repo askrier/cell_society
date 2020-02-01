@@ -71,7 +71,6 @@ public class VisualizationView {
     // must be first since other panels may refer to page
     root.setCenter(myGrid.r);
     root.setTop(makeInputPanel());
-    //root.setBottom(makeInformationPanel());
     // create scene to hold UI
     Scene scene = new Scene(root, width, height);
     // activate CSS styling
@@ -82,7 +81,6 @@ public class VisualizationView {
   // Display given message as an error in the GUI
   private void showError (String message) {
     Alert alert = new Alert(AlertType.ERROR);
-  //  alert.setTitle(myResources.getString("ErrorTitle"));
     alert.setContentText(message);
     alert.showAndWait();
   }
@@ -107,7 +105,6 @@ public class VisualizationView {
 
 
   // update just the view to display next state
-  //I THINK UPDATE IS CONTINUOUSLY CALLED
   private Node update (Grid grid) {
     GridPane gridPane = new GridPane();
     gridPane.getChildren().add(grid.r);
