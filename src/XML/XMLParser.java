@@ -80,7 +80,7 @@ public class XMLParser {
         }
         else {
             // FIXME: empty string or exception? In some cases it may be an error to not find any text
-            return "";
+            return "0";
         }
     }
 
