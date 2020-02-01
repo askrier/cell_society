@@ -13,15 +13,49 @@ public class Grid {
     public boolean exists;
     public boolean update = false;
 
-    public <T extends Cell> Grid(int height, int width, int vCellNum, int hCellNum, Class<T> gameVariation) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+//    public <T extends Cell> Grid(int height, int width, int vCellNum, int hCellNum, Class<T> gameVariation) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+//        for (int i = 0; i < vCellNum; i++) {
+//            myArrayOfCells.add(new ArrayList<Cell>());
+//            for (int j=0; j< hCellNum; j++){
+//                Cell obj = getInstance(gameVariation);
+//                myArrayOfCells.get(i).add(obj);
+//
+//            }
+//        }
+//    }
+
+    public Grid(int height, int width, int vCellNum, int hCellNum, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+//        Cell obj = null;
+//        if(gameVariation == "GameOfLife"){
+//            obj = new GameOfLifeCell(0);
+//        }
+//        else if(gameVariation == "PercolationCell"){
+//            obj = new PercolationCell(0);
+//        }
+//        else if(gameVariation == "PredatorPreyCell"){
+//            obj = new PredatorPreyCell(0);
+//        }
+//        else if(gameVariation == "SegregationCell"){
+//            obj = new SegregationCell(0);
+//        }
+//        else if(gameVariation == "FireCell"){
+//            obj = new FireCell(0);
+//        }
+//        Class cls = obj.getClass();
+        Class cls = Class.forName(gameVariation);
+
+
         for (int i = 0; i < vCellNum; i++) {
             myArrayOfCells.add(new ArrayList<Cell>());
             for (int j=0; j< hCellNum; j++){
-                Cell obj = getInstance(gameVariation);
-                myArrayOfCells.get(i).add(obj);
+                Constructor constructor = cls.getConstructor(int.class);
+                Object objectCell = constructor.newInstance(0);
+                Cell cell = (Cell) objectCell;
+                myArrayOfCells.get(i).add(cell);
 
             }
         }
+
 
     }
 
@@ -36,10 +70,10 @@ public class Grid {
         }
     }
 
-    public <T extends Cell> Cell getInstance(Class<T> gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Cell cell = gameVariation.getDeclaredConstructor().newInstance();
-        return cell;
-    }
+//    public <T extends Cell> Cell getInstance(Class<T> gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+//        Cell cell = gameVariation.getDeclaredConstructor().newInstance();
+//        return cell;
+//    }
 
     public ArrayList<ArrayList<Cell>> getListOfCells(){
         return myArrayOfCells;

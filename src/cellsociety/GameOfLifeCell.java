@@ -48,5 +48,5 @@ public class GameOfLifeCell extends Cell{
         populateNeighbors(gridOfCells, eastNeighbor);
         populateNeighbors(gridOfCells, westNeighbor);
     }
-    
+
 }
