@@ -65,7 +65,11 @@ public class VisualizationModel {
   }
   public void stepThrough(){
 //    Main.animation.play();
-    Main.animation.setCycleCount(1);
+  //  Main.animation.stop();
+    Main.animation.pause();
+   // Main.animation.setDelay(Duration.ONE);
+  //  Main.animation.play();
+
 
 
 

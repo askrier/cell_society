@@ -30,6 +30,5 @@ public class Grid {
             if(c ==255){
                 update = false;
             }
-           // r.setFill(Color.rgb(c, g, 1));
     }}
 }

@@ -16,10 +16,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -56,11 +58,11 @@ public class Main extends Application {
     // create program specific components
     model = new VisualizationModel();
     display = new VisualizationView(model);
-    VBox layout = new VBox(WIDTH / 2);
+    BorderPane layout = new BorderPane();
     Button startButton = start();
     Text gameName = getSplashText();
-    layout.getChildren().add(startButton);
-    layout.getChildren().add(gameName);
+    layout.setTop(startButton);
+    layout.setCenter(gameName);
     Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
     stage.setScene(myScene);
     myScene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
@@ -71,8 +73,14 @@ public class Main extends Application {
         stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
         stage.show();
     frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
-    animation = new Timeline();
-    animation.setCycleCount(Timeline.INDEFINITE);
+    animation = new Timeline(
+        new KeyFrame(Duration.ZERO, new EventHandler() {
+          public void handle(Event event) {
+            // do something here with stpe through?
+          }
+        }));
+
+        animation.setCycleCount(Timeline.INDEFINITE);
     animation.getKeyFrames().add(frame);
       }
     });
@@ -88,19 +96,16 @@ public class Main extends Application {
       key = (String) i.next();
     }
     gameName.setText(properties.getProperty(key));
-    gameName.setFont(Font.font(50));
+    gameName.setFont(Font.font("Apple Chancery",100));
     gameName.setTextAlignment(TextAlignment.CENTER);
     return gameName;
   }
+
   private Button start() {
     Button startButton = new Button();
     startButton.setText("Play");
-    startButton.setLayoutX(0);
-    startButton.setLayoutY(HEIGHT);
     return startButton;
   }
-
-
 
   public void ReadFile() {
 
