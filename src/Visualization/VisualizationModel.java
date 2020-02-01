@@ -1,15 +1,21 @@
 package Visualization;
 
+import static java.time.Duration.ofSeconds;
+
 import cellsociety.Cell;
 import cellsociety.Grid;
 import cellsociety.Main;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.util.Duration;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 
 public class VisualizationModel {
 
@@ -26,12 +32,15 @@ public class VisualizationModel {
   }
 
   public Grid getGrid(){
+
+    //this is going to be created by andrew's data and passed to create the grid
+
     myGrid = new Grid(5,5,5,5,"hello");
     return myGrid;
   }
 
   /**
-   * Returns the state of grid
+   * Returns the state of grid, if there is a grid
    */
   public Grid start () {
     if (has()) {
@@ -41,12 +50,15 @@ public class VisualizationModel {
   }
 
   /**
-   * Returns the next state of grid
+   * Returns the next state of grid, if there is an update
    */
   public Grid next(){
     Main.animation.play();
     if(hasNext()) {
-      myGrid.update();
+
+      //update the grid
+      myGrid.updateGrid();
+
       return myGrid;
     }
     return null;
@@ -55,32 +67,24 @@ public class VisualizationModel {
   public void end(){
     Main.animation.stop();
   }
-  public boolean slow(){
-    Main.animation.setRate(.5);
-    return true;
-  }
-  public boolean speed(){
-    Main.animation.setRate(10);
-    return true;
-  }
+
+  public void slow(){ Main.animation.setRate(.5); }
+
+  public void speed(){ Main.animation.setRate(10); }
+
   public void stepThrough(){
-//    Main.animation.play();
-    //  Main.animation.stop();
     Main.animation.pause();
-    // Main.animation.setDelay(Duration.ONE);
-    //  Main.animation.play();
 
+    // I had a boolean that checks if the grid needs to be updated, and in order to update it with step it needed to be set to true
+    myGrid.update = true;
 
-
-
+    myGrid.updateGrid();
   }
 
   /**
    * Returns true if there is a next Grid available
    */
-  public boolean has () {
-    return myGrid.exists;
-  }
+  public boolean has () { return myGrid.exists; }
 
   public boolean hasNext(){
     return myGrid.update;

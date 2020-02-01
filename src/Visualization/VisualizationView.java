@@ -69,8 +69,19 @@ public class VisualizationView {
   public Scene makeScene (int width, int height) {
     BorderPane root = new BorderPane();
     // must be first since other panels may refer to page
-    root.setCenter(myGrid.r);
+
+
+    //Add the grid bricks to the root, this is the intial view/ intital settings grid
+
+
+    for(int i=0;i<myGrid.myArrayofCells;i++){
+      root.setCenter(i);
+    }
+
+
+
     root.setTop(makeInputPanel());
+    root.setBottom(makeInputField());
     // create scene to hold UI
     Scene scene = new Scene(root, width, height);
     // activate CSS styling
@@ -98,7 +109,7 @@ public class VisualizationView {
   private void speed(){
     myModel.speed();
   }
-  private void stepThrough(){
+  private void stepThrough() {
     myModel.stepThrough();
   }
 
@@ -107,36 +118,50 @@ public class VisualizationView {
   // update just the view to display next state
   private Node update (Grid grid) {
     GridPane gridPane = new GridPane();
-    gridPane.getChildren().add(grid.r);
+
+    //add the grid bricks to the root so that they can be updated and changed, this is the simulation grid
+
+    for(int i=0;i<myGrid.myArrayofCells;i++)
+     {
+      gridPane.getChildren().add(i);
+    }
     return gridPane;
   }
 
 
-  // make user-entered URL/text field and back/next buttons
   private Node makeInputPanel () {
     HBox result = new HBox();
+
     startSimulation = makeButton("Start", event -> start());
     result.getChildren().add(startSimulation);
-    // new style way to do set up callback (lambdas)
+
+
     stopSimulation = makeButton("Stop", event -> stop());
     result.getChildren().add(stopSimulation);
-    FileChooser fileChooser = new FileChooser();
+
+
     slowSimulation = makeButton("Slow",event -> slow());
     result.getChildren().add(slowSimulation);
+
     speedSimulation = makeButton("Speed", event-> speed());
     result.getChildren().add(speedSimulation);
+
     stepSimulation = makeButton("Step", event -> stepThrough());
     result.getChildren().add(stepSimulation);
-    //result.getChildren().add(new Text("hi"));
+
+    FileChooser fileChooser = new FileChooser();
     browseFolder = makeButton("Browse", new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
         Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
         if(file!=null){
-          //pass to andrew
-          //xaml parser
+
+
+          //GET INFORMATION FROM FILE - FILE PATH CAN BE PASSED TO ANDREW HERE
+
           System.out.println(file);
+
         }
       }
     });
@@ -145,7 +170,7 @@ public class VisualizationView {
   }
 
   /**
-   * Display given Grid
+   * Display given Grid, if not there it throws an error
    */
   public void showPage (Grid grid) {
 
@@ -175,10 +200,13 @@ public class VisualizationView {
   }
 
   // make text field for input
-  private TextField makeInputField (int width, EventHandler<ActionEvent> handler) {
-    TextField result = new TextField();
-    result.setPrefColumnCount(width);
-    result.setOnAction(handler);
+  private Text makeInputField () {
+    Text result = new Text();
+
+    // Down here is where the Simulation Name can be put in
+
+    result.setText("Simulation name");
+
     return result;
   }
 }

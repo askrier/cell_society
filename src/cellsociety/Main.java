@@ -73,13 +73,7 @@ public class Main extends Application {
                 stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
                 stage.show();
                 frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
-                animation = new Timeline(
-                        new KeyFrame(Duration.ZERO, new EventHandler() {
-                            public void handle(Event event) {
-                                // do something here with stpe through?
-                            }
-                        }));
-
+                animation = new Timeline();
                 animation.setCycleCount(Timeline.INDEFINITE);
                 animation.getKeyFrames().add(frame);
             }
@@ -112,7 +106,10 @@ public class Main extends Application {
     }
 
     public void step(double elapsedTime) {
-        model.myGrid.update();
+
+        //calls grid update
+
+        model.myGrid.updateGrid();
     }
 
 
