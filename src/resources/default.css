@@ -2,19 +2,32 @@
     -fx-font-size: 14pt;
     -fx-font-family: "Courier New";
     -fx-base: rgb(132, 145, 47);
+<<<<<<< HEAD
+    -fx-background: rgb(22, 228, 203);
+}
+
+.button {
+    -fx-text-fill: #006464;
+    -fx-background-color: #DFB951;
+=======
     -fx-background-color: #E0FFFF;
 }
 
 .button {
     -fx-text-fill: black;
     -fx-background-color: #40E0D0;
+>>>>>>> aa028ac4ce8757bf64214472a4e8f3a639bfe8bf
     -fx-border-radius: 20;
     -fx-background-radius: 20;
     -fx-padding: 8;
 }
 
 .button:hover {
+<<<<<<< HEAD
+    -fx-background-color: #3a3a3a;
+=======
     -fx-background-color: #00FFFF;
+>>>>>>> aa028ac4ce8757bf64214472a4e8f3a639bfe8bf
 }
 
 .combo-box-base {
@@ -38,4 +51,7 @@
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold";
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> aa028ac4ce8757bf64214472a4e8f3a639bfe8bf

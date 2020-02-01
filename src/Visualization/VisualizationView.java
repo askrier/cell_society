@@ -82,7 +82,7 @@ public class VisualizationView {
   // Display given message as an error in the GUI
   private void showError (String message) {
     Alert alert = new Alert(AlertType.ERROR);
-  //  alert.setTitle(myResources.getString("ErrorTitle"));
+    //  alert.setTitle(myResources.getString("ErrorTitle"));
     alert.setContentText(message);
     alert.showAndWait();
   }
@@ -185,6 +185,3 @@ public class VisualizationView {
     return result;
   }
 }
-
-
-

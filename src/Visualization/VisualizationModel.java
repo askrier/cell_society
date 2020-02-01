@@ -19,15 +19,15 @@ public class VisualizationModel {
   public VisualizationModel() {
     myFileURL = null;
     myGrid = null;
-}
+  }
 
   public void getFile (String file){
     myFileURL = file;
   }
 
   public Grid getGrid(){
-      myGrid = new Grid(5,5,5,5,"hello");
-      return myGrid;
+    myGrid = new Grid(5,5,5,5,"hello");
+    return myGrid;
   }
 
   /**
@@ -53,7 +53,7 @@ public class VisualizationModel {
   }
 
   public void end(){
-     Main.animation.stop();
+    Main.animation.stop();
   }
   public boolean slow(){
     Main.animation.setRate(.5);
@@ -65,10 +65,10 @@ public class VisualizationModel {
   }
   public void stepThrough(){
 //    Main.animation.play();
-  //  Main.animation.stop();
+    //  Main.animation.stop();
     Main.animation.pause();
-   // Main.animation.setDelay(Duration.ONE);
-  //  Main.animation.play();
+    // Main.animation.setDelay(Duration.ONE);
+    //  Main.animation.play();
 
 
 
