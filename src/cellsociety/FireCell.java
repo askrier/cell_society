@@ -1,18 +1,12 @@
 package cellsociety;
 
-import cellsociety.Cell;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 public class FireCell extends Cell {
     private static final int EMPTY = 0;
     private static final int TREE = 1;
     private static final int BURNING = 2;
     private static final double PROBABILITYOFCATCH = 0.15;
-
-
 
     public FireCell(int currentState){
         super (currentState);
