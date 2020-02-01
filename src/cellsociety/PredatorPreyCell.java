@@ -1,8 +1,11 @@
 package cellsociety;
 
+import java.util.ArrayList;
+
 public class PredatorPreyCell extends Cell{
 
-    public PredatorPreyCell(){
+    public PredatorPreyCell(int currentState){
+        super(currentState);
 
     }
 
@@ -12,7 +15,8 @@ public class PredatorPreyCell extends Cell{
     }
 
     @Override
-    public void findNeighbors(){
+    protected void findNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow) {
 
     }
+
 }
