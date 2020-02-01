@@ -2,7 +2,7 @@ package cellsociety;
 
 import javafx.scene.shape.Polygon;
 
-public class Cell extends Polygon {
+public abstract class Cell extends Polygon {
     private int previousState;
     private int currentState;
     private Cell[] neighborArray;
@@ -11,10 +11,14 @@ public class Cell extends Polygon {
 
     }
 
-    public void updateCellValue(){
-    }
+    /**
+     * Update the current state of the cell
+     */
+    protected  abstract void updateCellValue();
 
-    public void findNeighbors(){
-    }
+    /**
+     * Returns the neighbors of the cell
+     */
+    protected abstract void findNeighbors();
 
 }

@@ -10,7 +10,7 @@ public class Grid {
 
 
     }
-    
+
     public void updateGrid(){
         for(ArrayList<Cell> innerList : myArrayOfCells){
             for(Cell cell: innerList){
