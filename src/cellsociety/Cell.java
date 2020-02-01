@@ -2,19 +2,41 @@ package cellsociety;
 
 import javafx.scene.shape.Polygon;
 
-public class Cell extends Polygon {
-    private int previousState;
-    private int currentState;
-    private Cell[] neighborArray;
+import java.util.ArrayList;
+import java.util.Collections;
 
-    public Cell(){
+public abstract class Cell extends Polygon {
+    protected int previousState;
+    protected int currentState;
+    protected ArrayList<Cell> neighborArray;
 
+    public Cell(int cellState){
+        currentState = cellState;
+        previousState = currentState;
     }
 
-    public void updateCellValue(){
+    public int getCurrentState(){
+        return currentState;
     }
 
-    public void findNeighbors(){
+    public int getPreviousState(){
+        return previousState;
+    }
+
+    /**
+     * Update the current state of the cell
+     */
+    protected  abstract void updateCellValue();
+
+    /**
+     * Returns the neighbors of the cell
+     */
+    protected abstract void findNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow);
+
+    protected void populateNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int[] cellCoordinate){
+        if(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]) != null){
+            neighborArray.add(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]));
+        }
     }
 
 }
