@@ -32,9 +32,9 @@ public class SegregationCell extends Cell {
         double sameAgentCount = 0;
         double totalAgentNeighbors = 0;
         for (Cell neighbor : neighborArray){
-            if (neighbor.previousState != EMPTY){
+            if (neighbor.getPreviousState() != EMPTY){
                 totalAgentNeighbors ++;
-                if (neighbor.previousState == previousState){
+                if (neighbor.getPreviousState() == previousState){
                     sameAgentCount ++;
                 }
             }
