@@ -26,14 +26,14 @@ public abstract class Cell extends Polygon {
      *
      * @return the previous state of the cell
      */
-    public int getPreviousState(){
+    protected int getPreviousState(){
         return previousState;
     }
 
     /**
      * Sets the previous state of the cell as the current state
      */
-    public void resetState(){
+    protected void resetState(){
         previousState = currentState;
     }
 
