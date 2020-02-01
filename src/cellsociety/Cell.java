@@ -3,7 +3,6 @@ package cellsociety;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public abstract class Cell extends Polygon {
     protected int previousState;
@@ -32,7 +31,7 @@ public abstract class Cell extends Polygon {
     }
 
     /**
-     * Sets the current state of the cell as the previous state
+     * Sets the previous state of the cell as the current state
      */
     public void resetState(){
         previousState = currentState;
