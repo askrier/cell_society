@@ -36,6 +36,10 @@ public class Main extends Application {
   public static int FRAMES_PER_SECOND = 60;
   public static int MILLISECOND_DELAY = 800 / FRAMES_PER_SECOND;
   public static double SECOND_DELAY = 5.0 / FRAMES_PER_SECOND;
+  private static final String RESOURCES = "resources";
+  public static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
+  public static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
+  public static final String STYLESHEET = "default.css";
   public static final double WIDTH = 800;
   public static final double HEIGHT = 800;
   public static final Paint BACKGROUND = Color.GRAY;
@@ -59,6 +63,7 @@ public class Main extends Application {
     layout.getChildren().add(gameName);
     Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
     stage.setScene(myScene);
+    myScene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
     stage.show();
     startButton.setOnAction(new EventHandler<ActionEvent>() {
       @Override
@@ -87,17 +92,9 @@ public class Main extends Application {
     gameName.setTextAlignment(TextAlignment.CENTER);
     return gameName;
   }
-    private Button getBrowseButton() {
-      Button browse = new Button("Browse...");
-      browse.setLayoutX(700);
-      browse.setLayoutY(HEIGHT-100);
-      return browse;
-    }
-
   private Button start() {
     Button startButton = new Button();
     startButton.setText("Play");
-    startButton.setStyle("-fx-font: 18 arial; -fx-background-color: #b6e7c9");
     startButton.setLayoutX(0);
     startButton.setLayoutY(HEIGHT);
     return startButton;
