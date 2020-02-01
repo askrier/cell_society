@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 public class SegregationCell extends Cell {
     private static final int EMPTY = 0;
-    private static final int AGENTX = 1;
-    private static final int AGENTO = 2;
     private static final double SATISFIEDTHRESHOLD = 0.3;
 
-    public SegregationCell(int cellState){
-        super(cellState);
+    public SegregationCell(int currentState){
+        super(currentState);
         neighborArray = new ArrayList<Cell>();
     }
 
