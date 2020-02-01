@@ -1,6 +1,8 @@
 package cellsociety;
 
+import javafx.scene.Node;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 

@@ -3,9 +3,11 @@ package Visualization;
 import static java.time.Duration.ofSeconds;
 
 import cellsociety.Cell;
+import cellsociety.FireCell;
 import cellsociety.Grid;
 import cellsociety.Main;
 import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -31,11 +33,11 @@ public class VisualizationModel {
     myFileURL = file;
   }
 
-  public Grid getGrid(){
+  public Grid getGrid() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
     //this is going to be created by andrew's data and passed to create the grid
 
-    myGrid = new Grid(5,5,5,5,"hello");
+    myGrid = new Grid(5,5,5,5, FireCell.class);
     return myGrid;
   }
 

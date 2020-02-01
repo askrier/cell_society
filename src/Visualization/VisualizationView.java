@@ -1,8 +1,12 @@
 package Visualization;
 
+import cellsociety.Cell;
 import cellsociety.Grid;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -58,7 +62,7 @@ public class VisualizationView {
   // create model data
   private VisualizationModel myModel;
 
-  public VisualizationView(VisualizationModel model){
+  public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
     myGrid = myModel.getGrid();
   }
@@ -73,11 +77,11 @@ public class VisualizationView {
 
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
 
-
-    for(int i=0;i<myGrid.myArrayofCells;i++){
-      root.setCenter(i);
+    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
+      for (Cell cell : list) {
+       root.setCenter(cell);
+      }
     }
-
 
 
     root.setTop(makeInputPanel());
@@ -121,11 +125,13 @@ public class VisualizationView {
 
     //add the grid bricks to the root so that they can be updated and changed, this is the simulation grid
 
-    for(int i=0;i<myGrid.myArrayofCells;i++)
-     {
-      gridPane.getChildren().add(i);
+
+    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
+      for (Cell cell : list) {
+        gridPane.getChildren().add(cell);
+      }
     }
-    return gridPane;
+      return gridPane;
   }
 
 
