@@ -15,12 +15,27 @@ public abstract class Cell extends Polygon {
         previousState = currentState;
     }
 
+    /**
+     *
+     * @return the current state of the cell
+     */
     public int getCurrentState(){
         return currentState;
     }
 
+    /**
+     *
+     * @return the previous state of the cell
+     */
     public int getPreviousState(){
         return previousState;
+    }
+
+    /**
+     * Sets the current state of the cell as the previous state
+     */
+    public void resetState(){
+        previousState = currentState;
     }
 
     /**
@@ -33,6 +48,11 @@ public abstract class Cell extends Polygon {
      */
     protected abstract void findNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow);
 
+    /**
+     * Adds neighbor cells to the neighbor List
+     * @param gridOfCells The grid containing all the cells in the simulation
+     * @param cellCoordinate the column and row information of the cell
+     */
     protected void populateNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int[] cellCoordinate){
         if(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]) != null){
             neighborArray.add(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]));
