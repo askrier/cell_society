@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.*;
 
 import org.w3c.dom.*;
-//import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
@@ -45,7 +44,6 @@ public class XMLParser {
         }
         // read data associated with the fields given by the object
         Map<String, String> results = new HashMap<>();
-        ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
         for (String field : SimData.DATA_FIELDS) {
             results.put(field, getTextValue(root, field));
         }
