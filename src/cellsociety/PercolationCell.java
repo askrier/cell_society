@@ -1,9 +1,11 @@
 package cellsociety;
 
+import java.util.ArrayList;
+
 public class PercolationCell extends Cell {
 
-    public PercolationCell(){
-
+    public PercolationCell(int currentState){
+        super(currentState);
     }
 
     @Override
@@ -12,7 +14,7 @@ public class PercolationCell extends Cell {
     }
 
     @Override
-    public void findNeighbors(){
+    protected void findNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow) {
 
     }
 }
