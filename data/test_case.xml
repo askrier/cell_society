@@ -5,5 +5,6 @@
     <cell_sides>4</cell_sides>
     <cell_rows>5</cell_rows>
     <cell_columns>6</cell_columns>
+    <spread_probability>0.15</spread_probability>
     <vals>222222111111000000222222111111</vals>
 </data>

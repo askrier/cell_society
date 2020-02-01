@@ -14,6 +14,7 @@ public class SimData {
             "cell_sides",
             "cell_rows",
             "cell_columns",
+            "spread_probability",
             "vals"
     );
 
@@ -23,10 +24,11 @@ public class SimData {
     private int myCellRows;
     private int myCellColumns;
     private int myVals;
+    private double mySpreadProb;
     private List<List<Integer>> myCellVals;
     private Map<String, String> myDataValues;
 
-    public SimData (String author, String simType, int cellSides, int cellRows, int cellColumns, int vals, List<List<Integer>> cellVals) {
+    public SimData (String author, String simType, int cellSides, int cellRows, int cellColumns, int vals, double spreadProb, List<List<Integer>> cellVals) {
         mySimType = simType;
         myAuthor = author;
         myCellSides = cellSides;
@@ -34,6 +36,7 @@ public class SimData {
         myCellColumns = cellColumns;
         myCellVals = cellVals;
         myVals = vals;
+        mySpreadProb = spreadProb;
         myDataValues = new HashMap<>();
     }
 
@@ -44,6 +47,7 @@ public class SimData {
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(3))),
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(4))),
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(5))),
+                Float.parseFloat(dataValues.get(DATA_FIELDS.get(6))),
                 null);
         setVals();
         myDataValues = dataValues;
@@ -58,6 +62,8 @@ public class SimData {
     public int getRows () { return myCellRows; }
 
     public int getColumns () { return myCellColumns; }
+
+    public double getSpreadProb () { return mySpreadProb; }
 
     public List<List<Integer>> getValList () { return myCellVals; }
 
