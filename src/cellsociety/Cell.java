@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public abstract class Cell extends Rectangle {
+public abstract class Cell extends Polygon {
     protected int previousState;
     protected int currentState;
     protected ArrayList<Cell> neighborArray;
@@ -28,14 +28,14 @@ public abstract class Cell extends Rectangle {
      *
      * @return the previous state of the cell
      */
-    public int getPreviousState(){
+    protected int getPreviousState(){
         return previousState;
     }
 
     /**
      * Sets the previous state of the cell as the current state
      */
-    public void resetState(){
+    protected void resetState(){
         previousState = currentState;
     }
 
