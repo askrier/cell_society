@@ -82,16 +82,19 @@ public class SimData {
     private void setVals () {
         int temp;
         myCellVals = new ArrayList<>();
-        List<Integer> row = new ArrayList<>();
+
         for(int i = 0; i < myCellRows; i++) {
+            List<Integer> row = new ArrayList<>();
             for(int j = 0; j < myCellColumns; j++) {
                 temp = Integer.parseInt(myVals.substring(0, 1));
                 row.add(temp);
                 myVals = myVals.substring(1);
-                //System.out.println(row);
+              //  System.out.println(temp);
+
             }
             myCellVals.add(row);
-            row.clear();
+            //row.clear();
+           // System.out.println(myCellVals);
         }
     }
 
