@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data game = "simulation">
+    <author>Thomas Schelling</author>
+    <sim_type>cellsociety.PredatorPreyCell</sim_type>
+    <cell_sides>4</cell_sides>
+    <cell_rows>10</cell_rows>
+    <cell_columns>10</cell_columns>
+    <vals>0120120120120120120120120120120120120120120120120120120120120120120120120120120120120120120120120120</vals>
+</data>
