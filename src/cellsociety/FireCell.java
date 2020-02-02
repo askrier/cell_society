@@ -21,6 +21,7 @@ public class FireCell extends Cell {
      */
     @Override
     public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+        neighborArray.clear();
         findNeighbors(gridOfCells, cellColumn, cellRow);
         double chanceOfCatch = Math.random();
         if (previousState == TREE){

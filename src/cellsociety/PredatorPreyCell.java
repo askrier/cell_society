@@ -25,6 +25,7 @@ public class PredatorPreyCell extends Cell{
 
     @Override
     public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+        neighborArray.clear();
         findNeighbors(gridOfCells, cellColumn, cellRow);
         if (!hasBeenUpdated){
             reproductiveTimer ++;

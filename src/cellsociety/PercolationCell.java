@@ -10,10 +10,12 @@ public class PercolationCell extends Cell {
 
     public PercolationCell(int currentState){
         super(currentState);
+        neighborArray = new ArrayList<Cell>();
     }
 
     @Override
     public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+        neighborArray.clear();
         findNeighbors(gridOfCells, cellColumn, cellRow);
         if(previousState==OPEN){
             for (Cell neighbor : neighborArray) {

@@ -10,7 +10,7 @@ public abstract class Cell extends Polygon {
     protected int reproductiveTimer;
     protected boolean hasBeenUpdated;
     protected int energy;
-    protected ArrayList<Cell> neighborArray = new ArrayList<Cell>();
+    protected ArrayList<Cell> neighborArray;
 
     public Cell(int cellState){
         currentState = cellState;
