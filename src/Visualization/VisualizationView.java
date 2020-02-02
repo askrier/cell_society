@@ -1,5 +1,7 @@
 package Visualization;
 
+import XML.SimData;
+import XML.XMLParser;
 import cellsociety.Cell;
 import cellsociety.Grid;
 import java.io.File;
@@ -58,13 +60,15 @@ public class VisualizationView {
   private Button stepSimulation;
   private Button browseFolder;
   public Grid myGrid;
+  public SimData simData;
   private Scene myPage;
   // create model data
   private VisualizationModel myModel;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
-    myGrid = myModel.getGrid();
+    myGrid = null;
+    //myGrid = myModel.getGrid();
   }
 
   /**
@@ -166,6 +170,10 @@ public class VisualizationView {
 
           //GET INFORMATION FROM FILE - FILE PATH CAN BE PASSED TO ANDREW HERE
 
+          XMLParser parser = new XMLParser("simulation");
+          simData = parser.getSimData(file);
+          myModel.setSimData(simData);
+
           System.out.println(file);
 
         }
@@ -215,4 +223,8 @@ public class VisualizationView {
 
     return result;
   }
+
+  public int getRows() { return simData.getRows(); }
+
+  public int getCols() { return simData.getColumns(); }
 }
