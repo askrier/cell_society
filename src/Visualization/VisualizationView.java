@@ -125,9 +125,6 @@ public class VisualizationView {
   private Node update (Grid grid) {
     GridPane gridPane = new GridPane();
 
-    //add the grid bricks to the root so that they can be updated and changed, this is the simulation grid
-
-
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
       for (Cell cell : list) {
         gridPane.getChildren().add(cell);
