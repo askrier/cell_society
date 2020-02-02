@@ -1,6 +1,8 @@
 package cellsociety;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 public class SegregationCell extends Cell {
@@ -12,7 +14,7 @@ public class SegregationCell extends Cell {
     public SegregationCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
-        myColorArray = {Color.WHITE, Color.RED, Color.MAGENTA};
+        myColorArray = new Color[]{Color.WHITE, Color.RED, Color.MAGENTA};
     }
 
     /**
