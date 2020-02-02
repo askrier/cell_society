@@ -16,6 +16,7 @@ import javafx.concurrent.Worker;
 import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -80,9 +81,11 @@ public class VisualizationView {
     gridPane = new TilePane();
 
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
-    gridPane.setHgap(3);
+    gridPane.setHgap(12);
+    gridPane.setVgap(12);
     gridPane.setPrefColumns(5);
     gridPane.setPrefRows(6);
+    gridPane.setOrientation(Orientation.VERTICAL);
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
       for (Cell cell : list) {
        gridPane.getChildren().add(cell);
@@ -127,15 +130,17 @@ public class VisualizationView {
 
   // update just the view to display next state
   private Node update (Grid grid) {
-    gridPane.setHgap(3);
+    gridPane.setHgap(12);
+    gridPane.setVgap(12);
     gridPane.setPrefColumns(5);
     gridPane.setPrefRows(6);
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
       for (Cell cell : list) {
         gridPane.getChildren().add(cell);
       }
+    }
       return gridPane;
-  }}
+  }
 
 
   private Node makeInputPanel () {
