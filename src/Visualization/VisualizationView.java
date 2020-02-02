@@ -134,8 +134,9 @@ public class VisualizationView {
       for (Cell cell : list) {
         gridPane.getChildren().add(cell);
       }
-      return gridPane;
-  }}
+    }
+    return gridPane;
+  }
 
 
   private Node makeInputPanel () {

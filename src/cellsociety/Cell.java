@@ -1,10 +1,12 @@
 package cellsociety;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public abstract class Cell extends Polygon {
+public abstract class Cell extends Rectangle {
     protected int previousState;
     protected int currentState;
     protected int reproductiveTimer;
@@ -13,6 +15,7 @@ public abstract class Cell extends Polygon {
     protected ArrayList<Cell> neighborArray;
 
     public Cell(int cellState){
+        super(80,40);
         currentState = cellState;
         previousState = currentState;
         neighborArray = new ArrayList<Cell>();
