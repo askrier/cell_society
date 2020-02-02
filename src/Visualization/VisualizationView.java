@@ -80,7 +80,7 @@ public class VisualizationView {
     BorderPane root = new BorderPane();
     // must be first since other panels may refer to page
     gridPane = new GridPane();
-
+    myGrid.updateColors();
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
     gridPane.setHgap(10);
     gridPane.setVgap(10);
