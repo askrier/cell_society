@@ -39,7 +39,7 @@ public class XMLParser {
      */
     public SimData getSimData (File dataFile) {
         Element root = getRootElement(dataFile);
-        System.out.println(root);
+        //System.out.println(root);
         if (! isValidFile(root, SimData.DATA_TYPE)) {
             throw new XMLException(ERROR_MESSAGE, SimData.DATA_TYPE);
         }
