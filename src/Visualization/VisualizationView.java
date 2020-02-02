@@ -83,6 +83,7 @@ public class VisualizationView {
     int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
       i++;
+      j=0;
       for (Cell cell : list) {
         j++;
        gridPane.add(cell,i,j);
@@ -131,6 +132,7 @@ public class VisualizationView {
     int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
       i++;
+      j=0;
       for (Cell cell : list) {
         j++;
         gridPane.add(cell,i,j);
