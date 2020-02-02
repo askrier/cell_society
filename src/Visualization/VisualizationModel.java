@@ -36,7 +36,6 @@ public class VisualizationModel {
   public Grid getGrid() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
     //this is going to be created by andrew's data and passed to create the grid
-
     myGrid = new Grid(5,5,5,5, 2,"cellsociety.FireCell");
     return myGrid;
   }

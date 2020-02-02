@@ -1,5 +1,7 @@
 package Visualization;
 
+import XML.SimData;
+import XML.XMLParser;
 import cellsociety.Cell;
 import cellsociety.Grid;
 import java.io.File;
@@ -162,7 +164,6 @@ public class VisualizationView {
         Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
         if(file!=null){
-
 
           //GET INFORMATION FROM FILE - FILE PATH CAN BE PASSED TO ANDREW HERE
 
