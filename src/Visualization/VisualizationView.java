@@ -17,6 +17,7 @@ import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -83,6 +84,7 @@ public class VisualizationView {
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
     gridPane.setHgap(12);
     gridPane.setVgap(12);
+    gridPane.setAlignment(Pos.CENTER);
     int i=0;
     int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
