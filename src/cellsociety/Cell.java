@@ -1,7 +1,5 @@
 package cellsociety;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
@@ -14,8 +12,8 @@ public abstract class Cell extends Rectangle {
     protected int energy;
     protected ArrayList<Cell> neighborArray;
 
-    public Cell(int cellState){
-        super(80,40);
+    public Cell(int cellState, int dimension){
+        super(dimension,dimension);
         currentState = cellState;
         previousState = currentState;
         neighborArray = new ArrayList<Cell>();

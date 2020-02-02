@@ -11,8 +11,8 @@ public class PredatorPreyCell extends Cell{
 
     private ArrayList<Cell> water = new ArrayList<Cell>();
 
-    public PredatorPreyCell(int currentState){
-        super(currentState);
+    public PredatorPreyCell(int currentState, int dimension){
+        super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
         reproductiveTimer = 0;
         energy = 2;
