@@ -26,23 +26,6 @@ public class Grid {
 
     public Grid(int height, int width, int vCellNum, int hCellNum, int states, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
-//        Cell obj = null;
-//        if(gameVariation == "GameOfLife"){
-//            obj = new GameOfLifeCell(0);
-//        }
-//        else if(gameVariation == "PercolationCell"){
-//            obj = new PercolationCell(0);
-//        }
-//        else if(gameVariation == "PredatorPreyCell"){
-//            obj = new PredatorPreyCell(0);
-//        }
-//        else if(gameVariation == "SegregationCell"){
-//            obj = new SegregationCell(0);
-//        }
-//        else if(gameVariation == "FireCell"){
-//            obj = new FireCell(0);
-//        }
-//        Class cls = obj.getClass();
         Class cls = Class.forName(gameVariation);
 
 
