@@ -6,8 +6,8 @@ public class SegregationCell extends Cell {
     private static final int EMPTY = 0;
     private static final double SATISFIEDTHRESHOLD = 0.3;
 
-    public SegregationCell(int currentState){
-        super(currentState);
+    public SegregationCell(int currentState, int dimension){
+        super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
     }
 
