@@ -44,6 +44,11 @@ public class Grid {
     public void updateGrid(){
         update = true;
         for(ArrayList<Cell> innerList : myArrayOfCells){
+            for(Cell cell: innerList){
+                cell.resetState();
+            }
+        }
+        for(ArrayList<Cell> innerList : myArrayOfCells){
             int arrayIndex = myArrayOfCells.indexOf(innerList);
             for(Cell cell: innerList){
                 int cellIndex = innerList.indexOf(cell);
