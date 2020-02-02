@@ -69,9 +69,7 @@ public class Grid {
 
     public void updateColors(){
         for(ArrayList<Cell> innerList : myArrayOfCells){
-            int arrayIndex = myArrayOfCells.indexOf(innerList);
             for(Cell cell: innerList){
-                int cellIndex = innerList.indexOf(cell);
                 cell.updateCellColor();
             }
         }
