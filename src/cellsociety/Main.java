@@ -157,6 +157,7 @@ public class Main extends Application {
     public void step(double elapsedTime) {
         //calls grid update
         model.myGrid.updateGrid();
+        model.myGrid.updateColors();
     }
 
 
