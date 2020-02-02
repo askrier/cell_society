@@ -4,20 +4,22 @@ import java.util.ArrayList;
 
 public class SegregationCell extends Cell {
     private static final int EMPTY = 0;
-    private static final int AGENTX = 1;
-    private static final int AGENTO = 2;
     private static final double SATISFIEDTHRESHOLD = 0.3;
 
-    public SegregationCell(int cellState){
-        super(cellState);
+    public SegregationCell(int currentState){
+        super(currentState);
         neighborArray = new ArrayList<Cell>();
     }
 
     /**
-     * @see Cell#updateCellValue()
+     * @see Cell#updateCellValue(ArrayList, int, int)
+     * @param gridOfCells
+     * @param cellColumn
+     * @param cellRow
      */
     @Override
-    public void updateCellValue(){
+    public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+        findNeighbors(gridOfCells, cellColumn, cellRow);
         if (previousState != EMPTY){
             double sameAgentPercent = percentageOfSameNeighbor();
             if (sameAgentPercent < SATISFIEDTHRESHOLD){
@@ -34,9 +36,9 @@ public class SegregationCell extends Cell {
         double sameAgentCount = 0;
         double totalAgentNeighbors = 0;
         for (Cell neighbor : neighborArray){
-            if (neighbor.previousState != EMPTY){
+            if (neighbor.getPreviousState() != EMPTY){
                 totalAgentNeighbors ++;
-                if (neighbor.previousState == previousState){
+                if (neighbor.getPreviousState() == previousState){
                     sameAgentCount ++;
                 }
             }

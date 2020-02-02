@@ -1,8 +1,6 @@
 package cellsociety;
 
-import javafx.scene.Node;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
@@ -41,8 +39,11 @@ public abstract class Cell extends Polygon {
 
     /**
      * Update the current state of the cell
+     * @param gridOfCells
+     * @param cellColumn
+     * @param cellRow
      */
-    protected  abstract void updateCellValue();
+    protected  abstract void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow);
 
     /**
      * Returns the neighbors of the cell
@@ -55,8 +56,10 @@ public abstract class Cell extends Polygon {
      * @param cellCoordinate the column and row information of the cell
      */
     protected void populateNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int[] cellCoordinate){
-        if(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]) != null){
-            neighborArray.add(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]));
+        if(cellCoordinate[0] >= 0 || cellCoordinate[0] <= gridOfCells.size()-1 ){
+            if (cellCoordinate[1] >= 0 || cellCoordinate[1] <= gridOfCells.get(cellCoordinate[0]).size()-1){
+                neighborArray.add(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]));
+            }
         }
     }
 
