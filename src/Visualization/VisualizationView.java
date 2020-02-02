@@ -58,7 +58,6 @@ public class VisualizationView {
   private Button speedSimulation;
   private Button slowSimulation;
   private Button stepSimulation;
-  private Button browseFolder;
   public Grid myGrid;
   public SimData simData;
   private Scene myPage;
@@ -67,8 +66,8 @@ public class VisualizationView {
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
-    myGrid = null;
-    //myGrid = myModel.getGrid();
+    //myGrid = null;
+    myGrid = myModel.getGrid();
   }
 
   /**
@@ -156,26 +155,6 @@ public class VisualizationView {
     stepSimulation = makeButton("Step", event -> stepThrough());
     result.getChildren().add(stepSimulation);
 
-    FileChooser fileChooser = new FileChooser();
-    browseFolder = makeButton("Browse", new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        Stage stage = new Stage();
-        File file = fileChooser.showOpenDialog(stage);
-        if(file!=null){
-
-          //GET INFORMATION FROM FILE - FILE PATH CAN BE PASSED TO ANDREW HERE
-
-          XMLParser parser = new XMLParser("simulation");
-          simData = parser.getSimData(file);
-          myModel.setSimData(simData);
-
-          System.out.println(file);
-
-        }
-      }
-    });
-    result.getChildren().add(browseFolder);
     return result;
   }
 
