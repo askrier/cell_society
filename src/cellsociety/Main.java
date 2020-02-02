@@ -2,12 +2,15 @@ package cellsociety;
 
 import Visualization.VisualizationModel;
 import Visualization.VisualizationView;
+import XML.SimData;
+import XML.XMLParser;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -51,18 +54,45 @@ public class Main extends Application {
     public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
     private Desktop desktop = Desktop.getDesktop();
     private VisualizationModel model;
-    private  VisualizationView display;
+    private VisualizationView display;
+    public SimData simData;
+    private Button browseFolder;
 
     @Override
     public void start(Stage stage) throws Exception {
         // create program specific components
-        model = new VisualizationModel();
-        display = new VisualizationView(model);
         BorderPane layout = new BorderPane();
         Button startButton = start();
         Text gameName = getSplashText();
         layout.setTop(startButton);
         layout.setCenter(gameName);
+        FileChooser fileChooser = new FileChooser();
+        browseFolder = browse("Browse", new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Stage stage = new Stage();
+                File file = fileChooser.showOpenDialog(stage);
+                if(file!=null){
+                    XMLParser parser = new XMLParser("simulation");
+                    simData = parser.getSimData(file);
+                    model.setSimData(simData);
+                    try {
+                        model.getGrid();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        layout.setBottom(browseFolder);
         Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
         stage.setScene(myScene);
         myScene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
@@ -70,6 +100,20 @@ public class Main extends Application {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                model = new VisualizationModel();
+                try {
+                    display = new VisualizationView(model);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
                 stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
                 stage.show();
                 frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
@@ -99,6 +143,14 @@ public class Main extends Application {
         Button startButton = new Button();
         startButton.setText("Play");
         return startButton;
+    }
+
+    private Button browse (String property, EventHandler<ActionEvent> handler) {
+        Button result = new Button();
+        String label = property;
+        result.setText(label);
+        result.setOnAction(handler);
+        return result;
     }
 
     public void ReadFile() {

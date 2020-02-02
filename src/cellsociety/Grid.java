@@ -23,6 +23,7 @@ public class Grid {
 
     public Grid(int height, int width, int vCellNum, int hCellNum, int states, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
+        exists = true;
         Class cls = Class.forName(gameVariation);
 
 
@@ -41,6 +42,7 @@ public class Grid {
     }
 
     public void updateGrid(){
+        update = true;
         for(ArrayList<Cell> innerList : myArrayOfCells){
             for(Cell cell: innerList){
                 cell.resetState();

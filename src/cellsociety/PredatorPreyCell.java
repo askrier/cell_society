@@ -132,4 +132,6 @@ public class PredatorPreyCell extends Cell{
 
         neighborArray.add(gridOfCells.get(column).get(row));
     }
+
 }
+

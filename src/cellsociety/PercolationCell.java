@@ -1,5 +1,4 @@
 package cellsociety;
-
 import java.util.ArrayList;
 
 public class PercolationCell extends Cell {
