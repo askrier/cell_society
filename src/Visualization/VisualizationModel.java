@@ -29,7 +29,7 @@ public class VisualizationModel {
   }
 
   public Grid getGrid() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-    myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), 2,mySimData.getSimType());
+    myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), 2,mySimData.getSimType(), mySimData.getValList());
     return myGrid;
 
   }
