@@ -15,6 +15,7 @@ public abstract class Cell extends Polygon {
     public Cell(int cellState){
         currentState = cellState;
         previousState = currentState;
+        neighborArray = new ArrayList<Cell>();
     }
 
     /**

@@ -9,7 +9,6 @@ public class GameOfLifeCell extends Cell{
     public GameOfLifeCell(int currentState){
         super(currentState);
         neighborArray = new ArrayList<Cell>();
-
     }
 
     /**
