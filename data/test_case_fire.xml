@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data game = "simulation">
+    <author>Angela B. Shiflet</author>
+    <sim_type>cellsociety.FireCell</sim_type>
+    <cell_sides>4</cell_sides>
+    <cell_rows>10</cell_rows>
+    <cell_columns>10</cell_columns>
+    <spread_probability>0.15</spread_probability>
+    <vals>22222222221111111111000000000022222222221111111111000000000022222222221111111111000000000022222222</vals>
+</data>
