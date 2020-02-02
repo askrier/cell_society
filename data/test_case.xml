@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <data game = "simulation">
     <author>this dude</author>
-    <sim_type>Fire</sim_type>
+    <sim_type>cellsociety.FireCell</sim_type>
     <cell_sides>4</cell_sides>
     <cell_rows>5</cell_rows>
     <cell_columns>6</cell_columns>

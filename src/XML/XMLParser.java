@@ -39,9 +39,10 @@ public class XMLParser {
      */
     public SimData getSimData (File dataFile) {
         Element root = getRootElement(dataFile);
-       // if (! isValidFile(root, SimData.DATA_TYPE)) {
-        //    throw new XMLException(ERROR_MESSAGE, SimData.DATA_TYPE);
-      //  }
+        System.out.println(root);
+        if (! isValidFile(root, SimData.DATA_TYPE)) {
+            throw new XMLException(ERROR_MESSAGE, SimData.DATA_TYPE);
+        }
         // read data associated with the fields given by the object
         Map<String, String> results = new HashMap<>();
         for (String field : SimData.DATA_FIELDS) {
