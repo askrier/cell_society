@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<data game="simulation">
+<data game = "simulation">
     <author>this dude</author>
     <sim_type>Fire</sim_type>
     <cell_sides>4</cell_sides>
