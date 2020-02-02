@@ -25,8 +25,8 @@ public class Grid {
         int intVal = 0;
         exists = true;
         int dimension;
-        int width = (int)(800/vCellNum);
-        int height = (int)(800/hCellNum);
+        int width = (int)(800/hCellNum);
+        int height = (int)(800/vCellNum);
         if(width<height){
             dimension=width;
         }
