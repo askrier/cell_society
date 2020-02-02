@@ -73,7 +73,7 @@ public class Main extends Application {
                 Stage stage = new Stage();
                 File file = fileChooser.showOpenDialog(stage);
                 if(file!=null){
-                    XMLParser parser = new XMLParser("simulation");
+                    XMLParser parser = new XMLParser("game");
                     simData = parser.getSimData(file);
                     model.setSimData(simData);
                     try {
