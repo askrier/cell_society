@@ -1,9 +1,6 @@
 package XML;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SimData {
 
@@ -23,18 +20,18 @@ public class SimData {
     private int myCellSides;
     private int myCellRows;
     private int myCellColumns;
-    private int myVals;
+    private String myVals;
     private double mySpreadProb;
     private List<List<Integer>> myCellVals;
     private Map<String, String> myDataValues;
 
-    public SimData (String author, String simType, int cellSides, int cellRows, int cellColumns, int vals, double spreadProb, List<List<Integer>> cellVals) {
+    public SimData (String author, String simType, int cellSides, int cellRows, int cellColumns, String vals, double spreadProb, List<List<Integer>> cellVals) {
         mySimType = simType;
         myAuthor = author;
         myCellSides = cellSides;
         myCellRows = cellRows;
         myCellColumns = cellColumns;
-        myCellVals = cellVals;
+        //myCellVals = cellVals;
         myVals = vals;
         mySpreadProb = spreadProb;
         myDataValues = new HashMap<>();
@@ -46,9 +43,10 @@ public class SimData {
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(2))),
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(3))),
                 Integer.parseInt(dataValues.get(DATA_FIELDS.get(4))),
-                Integer.parseInt(dataValues.get(DATA_FIELDS.get(5))),
-                Float.parseFloat(dataValues.get(DATA_FIELDS.get(6))),
+                dataValues.get(DATA_FIELDS.get(6)),
+                Float.parseFloat(dataValues.get(DATA_FIELDS.get(5))),
                 null);
+        //System.out.println(dataValues.get(DATA_FIELDS.get(6)));
         setVals();
         myDataValues = dataValues;
     }
@@ -83,17 +81,14 @@ public class SimData {
 
     private void setVals () {
         int temp;
-        int ones;
+        myCellVals = new ArrayList<>();
         List<Integer> row = new ArrayList<>();
-
         for(int i = 0; i < myCellRows; i++) {
-
-            temp = myVals % ((int) Math.pow(10, myCellColumns));
-
             for(int j = 0; j < myCellColumns; j++) {
-                ones = temp % 10;
-                temp /= 10;
-                row.add(ones);
+                temp = Integer.parseInt(myVals.substring(0, 1));
+                row.add(temp);
+                myVals = myVals.substring(1);
+                //System.out.println(row);
             }
             myCellVals.add(row);
             row.clear();
