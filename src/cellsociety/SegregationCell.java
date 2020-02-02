@@ -1,6 +1,6 @@
 package cellsociety;
 
-public class SegregationCell extends Cell {
+/*public class SegregationCell extends Cell {
 
     public SegregationCell(){
 
@@ -15,4 +15,4 @@ public class SegregationCell extends Cell {
     public void findNeighbors(){
 
     }
-}
+}*/

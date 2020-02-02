@@ -1,5 +1,6 @@
 package cellsociety;
 
+/*
 public class PredatorPreyCell extends Cell{
 
     public PredatorPreyCell(){
@@ -16,3 +17,4 @@ public class PredatorPreyCell extends Cell{
 
     }
 }
+*/

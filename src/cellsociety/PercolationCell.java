@@ -1,6 +1,6 @@
 package cellsociety;
 
-public class PercolationCell extends Cell {
+/*public class PercolationCell extends Cell {
 
     public PercolationCell(){
 
@@ -15,4 +15,4 @@ public class PercolationCell extends Cell {
     public void findNeighbors(){
 
     }
-}
+}*/

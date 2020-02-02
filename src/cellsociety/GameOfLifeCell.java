@@ -1,4 +1,5 @@
 package cellsociety;
+/*
 
 public class GameOfLifeCell extends Cell{
 
@@ -16,3 +17,4 @@ public class GameOfLifeCell extends Cell{
 
     }
 }
+*/
