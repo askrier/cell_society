@@ -24,7 +24,8 @@ public class Grid {
 //        }
 //    }
 
-    public Grid(int height, int width, int vCellNum, int hCellNum, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    public Grid(int height, int width, int vCellNum, int hCellNum, int states, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+        int intVal = 0;
 //        Cell obj = null;
 //        if(gameVariation == "GameOfLife"){
 //            obj = new GameOfLifeCell(0);
@@ -48,11 +49,11 @@ public class Grid {
         for (int i = 0; i < vCellNum; i++) {
             myArrayOfCells.add(new ArrayList<Cell>());
             for (int j=0; j< hCellNum; j++){
+                intVal = getRandom(states);
                 Constructor constructor = cls.getConstructor(int.class);
-                Object objectCell = constructor.newInstance(0);
+                Object objectCell = constructor.newInstance(intVal);
                 Cell cell = (Cell) objectCell;
                 myArrayOfCells.get(i).add(cell);
-
             }
         }
 
@@ -77,5 +78,10 @@ public class Grid {
 
     public ArrayList<ArrayList<Cell>> getListOfCells(){
         return myArrayOfCells;
+    }
+
+    private int getRandom(int num){
+        double rAsFloat = 1 * (num + Math.random( ) );
+        return (int)rAsFloat;
     }
 }

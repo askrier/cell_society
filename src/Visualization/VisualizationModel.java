@@ -37,7 +37,7 @@ public class VisualizationModel {
 
     //this is going to be created by andrew's data and passed to create the grid
 
-    myGrid = new Grid(5,5,5,5, "cellsociety.FireCell");
+    myGrid = new Grid(5,5,5,5, 2,"cellsociety.FireCell");
     return myGrid;
   }
 
