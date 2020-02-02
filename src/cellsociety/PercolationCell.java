@@ -7,8 +7,8 @@ public class PercolationCell extends Cell {
     private static final int PERCOLATED = 2;
 
 
-    public PercolationCell(int currentState){
-        super(currentState);
+    public PercolationCell(int currentState, int dimension){
+        super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
     }
 
