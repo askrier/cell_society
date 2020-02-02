@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
@@ -63,7 +64,7 @@ public class VisualizationView {
   private Scene myPage;
   // create model data
   private VisualizationModel myModel;
-  private GridPane gridPane;
+  private TilePane gridPane;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
@@ -76,17 +77,15 @@ public class VisualizationView {
   public Scene makeScene (int width, int height) {
     BorderPane root = new BorderPane();
     // must be first since other panels may refer to page
-    gridPane = new GridPane();
+    gridPane = new TilePane();
 
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
-    int i=0;
-    int j=0;
+    gridPane.setHgap(3);
+    gridPane.setPrefColumns(5);
+    gridPane.setPrefRows(6);
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
-      i++;
-      j=0;
       for (Cell cell : list) {
-        j++;
-       gridPane.add(cell,i,j);
+       gridPane.getChildren().add(cell);
       }
     }
 
@@ -128,18 +127,15 @@ public class VisualizationView {
 
   // update just the view to display next state
   private Node update (Grid grid) {
-    int i=0;
-    int j=0;
+    gridPane.setHgap(3);
+    gridPane.setPrefColumns(5);
+    gridPane.setPrefRows(6);
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
-      i++;
-      j=0;
       for (Cell cell : list) {
-        j++;
-        gridPane.add(cell,i,j);
+        gridPane.getChildren().add(cell);
       }
-    }
       return gridPane;
-  }
+  }}
 
 
   private Node makeInputPanel () {
