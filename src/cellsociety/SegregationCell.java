@@ -23,8 +23,8 @@ public class SegregationCell extends Cell {
         if (previousState != EMPTY){
             double sameAgentPercent = percentageOfSameNeighbor();
             if (sameAgentPercent < SATISFIEDTHRESHOLD){
-                //Find EmptyCell
-                //emptyCell.currentState = currentState;
+                Cell emptyCell = findEmptyCell(gridOfCells);
+                emptyCell.currentState = currentState;
                 currentState = EMPTY;
             }
             else {currentState = previousState;}
@@ -44,6 +44,15 @@ public class SegregationCell extends Cell {
             }
         }
         return sameAgentCount / totalAgentNeighbors;
+    }
+
+    private Cell findEmptyCell(ArrayList<ArrayList<Cell>> gridOfCells){
+        for(ArrayList<Cell> innerList : gridOfCells){
+            for(Cell cell: innerList){
+                if(cell.getCurrentState() == EMPTY){return cell;}
+            }
+        }
+        return null;
     }
 
     /**

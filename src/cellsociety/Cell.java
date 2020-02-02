@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public abstract class Cell extends Polygon {
     protected int previousState;
     protected int currentState;
+    protected int reproductiveTimer;
+    protected boolean hasBeenUpdated;
     protected ArrayList<Cell> neighborArray;
 
     public Cell(int cellState){
@@ -56,9 +58,11 @@ public abstract class Cell extends Polygon {
      * @param cellCoordinate the column and row information of the cell
      */
     protected void populateNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int[] cellCoordinate){
-        if(cellCoordinate[0] >= 0 || cellCoordinate[0] <= gridOfCells.size()-1 ){
-            if (cellCoordinate[1] >= 0 || cellCoordinate[1] <= gridOfCells.get(cellCoordinate[0]).size()-1){
-                neighborArray.add(gridOfCells.get(cellCoordinate[0]).get(cellCoordinate[1]));
+        int column = cellCoordinate[0];
+        int row = cellCoordinate[1];
+        if(column >= 0 && column <= gridOfCells.size()-1 ){
+            if (row >= 0 && row <= gridOfCells.get(column).size()-1){
+                neighborArray.add(gridOfCells.get(column).get(row));
             }
         }
     }
