@@ -67,6 +67,16 @@ public class Grid {
         }
     }
 
+    public void updateColors(){
+        for(ArrayList<Cell> innerList : myArrayOfCells){
+            int arrayIndex = myArrayOfCells.indexOf(innerList);
+            for(Cell cell: innerList){
+                int cellIndex = innerList.indexOf(cell);
+                cell.updateCellColor();
+            }
+        }
+    }
+
 //    public <T extends Cell> Cell getInstance(Class<T> gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 //        Cell cell = gameVariation.getDeclaredConstructor().newInstance();
 //        return cell;

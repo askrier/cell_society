@@ -1,5 +1,6 @@
 package cellsociety;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public abstract class Cell extends Rectangle {
     protected boolean hasBeenUpdated;
     protected int energy;
     protected ArrayList<Cell> neighborArray;
+    protected Color[] myColorArray;
 
     public Cell(int cellState, int dimension){
         super(dimension-20,dimension-20);
@@ -70,6 +72,10 @@ public abstract class Cell extends Rectangle {
                 neighborArray.add(cell);
             }
         }
+    }
+
+    public void updateCellColor(){
+        setFill(myColorArray[currentState]);
     }
 
 }
