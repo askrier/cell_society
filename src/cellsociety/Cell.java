@@ -10,7 +10,7 @@ public abstract class Cell extends Polygon {
     protected int reproductiveTimer;
     protected boolean hasBeenUpdated;
     protected int energy;
-    protected ArrayList<Cell> neighborArray;
+    protected ArrayList<Cell> neighborArray = new ArrayList<Cell>();
 
     public Cell(int cellState){
         currentState = cellState;
@@ -63,7 +63,9 @@ public abstract class Cell extends Polygon {
         int row = cellCoordinate[1];
         if(column >= 0 && column <= gridOfCells.size()-1 ){
             if (row >= 0 && row <= gridOfCells.get(column).size()-1){
-                neighborArray.add(gridOfCells.get(column).get(row));
+                ArrayList<Cell> Col = gridOfCells.get(column);
+                Cell cell = Col.get(row);
+                neighborArray.add(cell);
             }
         }
     }
