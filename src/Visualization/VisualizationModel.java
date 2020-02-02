@@ -41,8 +41,6 @@ public class VisualizationModel {
   }
 
   public Grid getGrid() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-
-    //this is going to be created by andrew's data and passed to create the grid
     myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), mySimData.getRows(), mySimData.getColumns(), 2,mySimData.getSimType());
     return myGrid;
 
@@ -64,10 +62,8 @@ public class VisualizationModel {
   public Grid next(){
     Main.animation.play();
     if(hasNext()) {
-
       //update the grid
       myGrid.updateGrid();
-
       return myGrid;
     }
     return null;
@@ -83,10 +79,7 @@ public class VisualizationModel {
 
   public void stepThrough(){
     Main.animation.pause();
-
-    // I had a boolean that checks if the grid needs to be updated, and in order to update it with step it needed to be set to true
     myGrid.update = true;
-
     myGrid.updateGrid();
   }
 
