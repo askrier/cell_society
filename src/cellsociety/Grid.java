@@ -3,6 +3,7 @@ package cellsociety;
 
 import java.util.ArrayList;
 import java.lang.reflect.*;
+import java.util.List;
 
 public class Grid {
     public ArrayList<ArrayList<Cell>> myArrayOfCells = new ArrayList<ArrayList<Cell>>();
@@ -21,7 +22,7 @@ public class Grid {
 //        }
 //    }
 
-    public Grid(int vCellNum, int hCellNum, int states, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    public Grid(int vCellNum, int hCellNum, int states, String gameVariation, List<List<Integer>> cellVals) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
         exists = true;
         int dimension;
@@ -40,7 +41,8 @@ public class Grid {
         for (int i = 0; i < vCellNum; i++) {
             myArrayOfCells.add(new ArrayList<Cell>());
             for (int j=0; j< hCellNum; j++){
-                intVal = getRandom(states);
+                System.out.println(cellVals.get(j));
+                intVal = cellVals.get(j).get(i);
                 Constructor constructor = cls.getConstructor(int.class,int.class);
                 Object objectCell = constructor.newInstance(intVal,dimension);
                 Cell cell = (Cell) objectCell;
@@ -65,6 +67,7 @@ public class Grid {
                 cell.updateCellValue(myArrayOfCells, arrayIndex, cellIndex);
             }
         }
+        updateColors();
     }
 
     public void updateColors(){
