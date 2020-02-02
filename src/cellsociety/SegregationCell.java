@@ -1,14 +1,18 @@
 package cellsociety;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class SegregationCell extends Cell {
     private static final int EMPTY = 0;
+    private static final int AGENTX = 1;
+    private static final int AGENTO = 2;
     private static final double SATISFIEDTHRESHOLD = 0.3;
 
     public SegregationCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
+        myColorArray = {Color.WHITE, Color.RED, Color.MAGENTA};
     }
 
     /**

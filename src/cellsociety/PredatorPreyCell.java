@@ -1,5 +1,6 @@
 package cellsociety;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,6 +15,7 @@ public class PredatorPreyCell extends Cell{
     public PredatorPreyCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
+        myColorArray = {Color.BLUE, Color.ORANGE, Color.GRAY};
         reproductiveTimer = 0;
         energy = 2;
         hasBeenUpdated = false;
