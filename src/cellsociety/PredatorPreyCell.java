@@ -1,6 +1,7 @@
 package cellsociety;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PredatorPreyCell extends Cell{
     private static final int WATER = 0;
@@ -8,11 +9,13 @@ public class PredatorPreyCell extends Cell{
     private static final int SHARK = 2;
     private static final int REPRODUCETIME = 4;
 
+    private ArrayList<Cell> water = new ArrayList<Cell>();
+
     public PredatorPreyCell(int currentState){
         super(currentState);
         neighborArray = new ArrayList<Cell>();
         reproductiveTimer = 0;
-        energy = 5;
+        energy = 2;
         hasBeenUpdated = false;
     }
 
@@ -27,7 +30,9 @@ public class PredatorPreyCell extends Cell{
     public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
         neighborArray.clear();
         findNeighbors(gridOfCells, cellColumn, cellRow);
+        water.clear();
         if (!hasBeenUpdated){
+            water.clear();
             reproductiveTimer ++;
             if (previousState == FISH){
                 hasBeenUpdated = true;
@@ -44,34 +49,47 @@ public class PredatorPreyCell extends Cell{
     private boolean updateFish() {
         for (Cell neighbor : neighborArray){
             if (neighbor.getPreviousState() == WATER && !neighbor.hasBeenUpdated){
-                currentState = WATER; //if reproduction timer is Good, FISH
-                if (reproductiveTimer >= REPRODUCETIME) {currentState = FISH;}
-                moveAnimal(neighbor, FISH);
-                return true;
+                water.add(neighbor);
             }
+        }
+        if(water.size()>0){
+            Cell neighbor = RandomWaterCell();
+            currentState = WATER; //if reproduction timer is Good, FISH
+            if (reproductiveTimer >= REPRODUCETIME) {currentState = FISH;}
+            moveAnimal(neighbor, FISH);
+            return true;
         }
         return false;
     }
 
+    private Cell RandomWaterCell() {
+        Random rand = new Random();
+        int random = rand.nextInt(water.size());
+        return water.get(random);
+    }
+
     private boolean updateShark() {
-        Cell fish = null;
         currentState = WATER;
         if (energy == 0){return true;}
         energy --;
         for (Cell neighbor : neighborArray){
             if (!neighbor.hasBeenUpdated){
                 if (neighbor.getPreviousState() == FISH || neighbor.getPreviousState() == WATER){
-                    fish = neighbor;
-                    if (neighbor.getPreviousState() == FISH){energy ++; moveShark(neighbor, SHARK); return true;}
+                    water.add(neighbor);
+                    if (neighbor.getPreviousState() == FISH){energy ++; moveShark(neighbor); return true;}
                 }
             }
         }
-        if (fish !=null && fish.getPreviousState() == WATER){moveShark(fish, SHARK); return true;}
+        if (water.size()>0){
+            Cell neighbor = RandomWaterCell();
+            moveShark(neighbor);
+            return true;
+        }
         return false;
     }
 
-    private void moveShark(Cell neighbor, int neighborCurrentState){
-        moveAnimal(neighbor, neighborCurrentState);
+    private void moveShark(Cell neighbor){
+        moveAnimal(neighbor, SHARK);
         neighbor.energy = energy;
         if (reproductiveTimer >= REPRODUCETIME){
             currentState = SHARK;
