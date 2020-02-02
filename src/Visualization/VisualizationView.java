@@ -206,13 +206,13 @@ public class VisualizationView {
     Text result = new Text();
 
     // Down here is where the Simulation Name can be put in
-    //result.setText(simData.getSimType() + ": by " + simData.getAuthor());
+    result.setText(simData.getSimType() + ": by " + simData.getAuthor());
    // result.setText();
 
     return result;
   }
 
-  public int getRows() { return simData.getRows(); }
-
-  public int getCols() { return simData.getColumns(); }
+  public void setSimData (SimData sim) {
+    simData = sim;
+  }
 }

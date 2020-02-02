@@ -103,6 +103,7 @@ public class Main extends Application {
             public void handle(ActionEvent event) {
                 try {
                     display = new VisualizationView(model);
+                    display.setSimData(simData);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (NoSuchMethodException e) {
