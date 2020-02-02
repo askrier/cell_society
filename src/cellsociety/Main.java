@@ -51,7 +51,7 @@ public class Main extends Application {
     public static Timeline animation;
     public static KeyFrame frame;
     public Group root;
-    public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
+    public static final Dimension DEFAULT_SIZE = new Dimension(800, 800);
     private Desktop desktop = Desktop.getDesktop();
     private VisualizationModel model;
     private VisualizationView display;
@@ -61,6 +61,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // create program specific components
+        model = new VisualizationModel();
         BorderPane layout = new BorderPane();
         Button startButton = start();
         Text gameName = getSplashText();
@@ -100,7 +101,6 @@ public class Main extends Application {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                model = new VisualizationModel();
                 try {
                     display = new VisualizationView(model);
                 } catch (ClassNotFoundException e) {
@@ -153,14 +153,8 @@ public class Main extends Application {
         return result;
     }
 
-    public void ReadFile() {
-
-    }
-
     public void step(double elapsedTime) {
-
         //calls grid update
-
         model.myGrid.updateGrid();
     }
 
