@@ -2,6 +2,7 @@ package Visualization;
 
 import static java.time.Duration.ofSeconds;
 
+import XML.SimData;
 import cellsociety.Cell;
 import cellsociety.FireCell;
 import cellsociety.Grid;
@@ -22,7 +23,9 @@ import javafx.event.EventHandler;
 public class VisualizationModel {
 
   public Grid myGrid;
+  private SimData mySimData;
   private String myFileURL;
+  private VisualizationView view;
 
   public VisualizationModel() {
     myFileURL = null;
@@ -33,11 +36,16 @@ public class VisualizationModel {
     myFileURL = file;
   }
 
+  public void setSimData (SimData sim) {
+    mySimData = sim;
+  }
+
   public Grid getGrid() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
     //this is going to be created by andrew's data and passed to create the grid
 
-    myGrid = new Grid(5,5,5,5, 2,"cellsociety.FireCell");
+
+    myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), mySimData.getRows(), mySimData.getColumns(), 2,"cellsociety.FireCell");
     return myGrid;
   }
 
