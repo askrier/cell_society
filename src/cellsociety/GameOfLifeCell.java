@@ -1,5 +1,4 @@
 package cellsociety;
-/*
 
 import java.util.ArrayList;
 
@@ -55,4 +54,4 @@ public class GameOfLifeCell extends Cell{
     }
 
 }
-*/
+
