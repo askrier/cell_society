@@ -65,7 +65,7 @@ public class VisualizationView {
   private Scene myPage;
   // create model data
   private VisualizationModel myModel;
-  private TilePane gridPane;
+  private GridPane gridPane;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
@@ -78,17 +78,19 @@ public class VisualizationView {
   public Scene makeScene (int width, int height) {
     BorderPane root = new BorderPane();
     // must be first since other panels may refer to page
-    gridPane = new TilePane();
+    gridPane = new GridPane();
 
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
     gridPane.setHgap(12);
     gridPane.setVgap(12);
-    gridPane.setPrefColumns(5);
-    gridPane.setPrefRows(6);
-    gridPane.setOrientation(Orientation.VERTICAL);
+    int i=0;
+    int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
+      i++;
+      j=0;
       for (Cell cell : list) {
-       gridPane.getChildren().add(cell);
+        j++;
+        gridPane.getChildren().add(cell);
       }
     }
 
@@ -132,10 +134,13 @@ public class VisualizationView {
   private Node update (Grid grid) {
     gridPane.setHgap(12);
     gridPane.setVgap(12);
-    gridPane.setPrefColumns(5);
-    gridPane.setPrefRows(6);
+    int i=0;
+    int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
+      i++;
+      j=0;
       for (Cell cell : list) {
+        j++;
         gridPane.getChildren().add(cell);
       }
     }
