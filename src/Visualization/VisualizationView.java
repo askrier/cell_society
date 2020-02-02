@@ -90,7 +90,7 @@ public class VisualizationView {
       j=0;
       for (Cell cell : list) {
         j++;
-        gridPane.getChildren().add(cell);
+        gridPane.add(cell,i,j);
       }
     }
 
@@ -141,7 +141,7 @@ public class VisualizationView {
       j=0;
       for (Cell cell : list) {
         j++;
-        gridPane.getChildren().add(cell);
+        gridPane.add(cell,i,j);
       }
     }
       return gridPane;
