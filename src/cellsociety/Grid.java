@@ -24,7 +24,7 @@ public class Grid {
     public Grid(int height, int width, int vCellNum, int hCellNum, int states, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
         exists = true;
-        Class cls = Class.forName(gameVariation);
+        Class<?> cls = Class.forName(gameVariation);
 
 
         for (int i = 0; i < vCellNum; i++) {
