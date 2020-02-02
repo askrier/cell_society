@@ -6,8 +6,8 @@ public class GameOfLifeCell extends Cell{
     private static final int DEAD = 0;
     private static final int ALIVE = 1;
 
-    public GameOfLifeCell(int currentState){
-        super(currentState);
+    public GameOfLifeCell(int currentState, int dimension){
+        super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
     }
 

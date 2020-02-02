@@ -24,6 +24,16 @@ public class Grid {
     public Grid(int vCellNum, int hCellNum, int states, String gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
         exists = true;
+        int dimension;
+        int width = (int)(800/vCellNum);
+        int height = (int)(800/hCellNum);
+        if(width<height){
+            dimension=width;
+        }
+        else{
+            dimension=height;
+        }
+
         Class<?> cls = Class.forName(gameVariation);
 
 
@@ -31,8 +41,8 @@ public class Grid {
             myArrayOfCells.add(new ArrayList<Cell>());
             for (int j=0; j< hCellNum; j++){
                 intVal = getRandom(states);
-                Constructor constructor = cls.getConstructor(int.class);
-                Object objectCell = constructor.newInstance(intVal);
+                Constructor constructor = cls.getConstructor(int.class,int.class);
+                Object objectCell = constructor.newInstance(intVal,dimension);
                 Cell cell = (Cell) objectCell;
                 myArrayOfCells.get(i).add(cell);
             }
