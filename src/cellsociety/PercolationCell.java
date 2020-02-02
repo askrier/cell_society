@@ -13,7 +13,8 @@ public class PercolationCell extends Cell {
     }
 
     @Override
-    public void updateCellValue(){
+    public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+        findNeighbors(gridOfCells, cellColumn, cellRow);
         if(previousState==OPEN){
             for (Cell neighbor : neighborArray) {
                 if (neighbor.getPreviousState() == PERCOLATED) {

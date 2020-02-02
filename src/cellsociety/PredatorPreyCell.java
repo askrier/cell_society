@@ -13,7 +13,8 @@ public class PredatorPreyCell extends Cell{
     }
 
     @Override
-    public void updateCellValue(){
+    public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+        findNeighbors(gridOfCells, cellColumn, cellRow);
 
     }
 
