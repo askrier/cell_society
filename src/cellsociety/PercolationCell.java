@@ -1,4 +1,6 @@
 package cellsociety;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 public class PercolationCell extends Cell {
@@ -10,6 +12,7 @@ public class PercolationCell extends Cell {
     public PercolationCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
+        myColorArray = new Color[]{Color.BLACK, Color.WHITE, Color.BLUE};
     }
 
     @Override

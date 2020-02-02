@@ -1,5 +1,7 @@
 package cellsociety;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 public class GameOfLifeCell extends Cell{
@@ -9,6 +11,7 @@ public class GameOfLifeCell extends Cell{
     public GameOfLifeCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
+        myColorArray = new Color[]{Color.BLACK, Color.WHITE};
     }
 
     /**

@@ -1,5 +1,7 @@
 package cellsociety;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 public class FireCell extends Cell {
@@ -11,6 +13,7 @@ public class FireCell extends Cell {
     public FireCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
+        myColorArray = new Color[]{Color.YELLOW, Color.GREEN, Color.RED};
     }
 
     /**
