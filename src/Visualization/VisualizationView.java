@@ -63,10 +63,10 @@ public class VisualizationView {
   private Scene myPage;
   // create model data
   private VisualizationModel myModel;
+  private GridPane gridPane;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
-    //myGrid = null;
     myGrid = myModel.getGrid();
   }
 
@@ -76,17 +76,20 @@ public class VisualizationView {
   public Scene makeScene (int width, int height) {
     BorderPane root = new BorderPane();
     // must be first since other panels may refer to page
-
+    gridPane = new GridPane();
 
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
-
+    int i=0;
+    int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
+      i++;
       for (Cell cell : list) {
-       root.setCenter(cell);
+        j++;
+       gridPane.add(cell,i,j);
       }
     }
 
-
+    root.setCenter(gridPane);
     root.setTop(makeInputPanel());
     root.setBottom(makeInputField());
     // create scene to hold UI
@@ -124,11 +127,13 @@ public class VisualizationView {
 
   // update just the view to display next state
   private Node update (Grid grid) {
-    GridPane gridPane = new GridPane();
-
+    int i=0;
+    int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
+      i++;
       for (Cell cell : list) {
-        gridPane.getChildren().add(cell);
+        j++;
+        gridPane.add(cell,i,j);
       }
     }
       return gridPane;
@@ -194,7 +199,7 @@ public class VisualizationView {
 
     // Down here is where the Simulation Name can be put in
 
-    result.setText("Simulation name");
+   // result.setText();
 
     return result;
   }
