@@ -61,6 +61,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // create program specific components
+        model = new VisualizationModel();
         BorderPane layout = new BorderPane();
         Button startButton = start();
         Text gameName = getSplashText();
@@ -100,7 +101,6 @@ public class Main extends Application {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                model = new VisualizationModel();
                 try {
                     display = new VisualizationView(model);
                 } catch (ClassNotFoundException e) {
