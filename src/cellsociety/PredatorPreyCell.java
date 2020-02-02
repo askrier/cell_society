@@ -12,6 +12,7 @@ public class PredatorPreyCell extends Cell{
         super(currentState);
         neighborArray = new ArrayList<Cell>();
         reproductiveTimer = 0;
+        energy = 5;
         hasBeenUpdated = false;
     }
 
@@ -25,24 +26,53 @@ public class PredatorPreyCell extends Cell{
     @Override
     public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
         findNeighbors(gridOfCells, cellColumn, cellRow);
-        if (hasBeenUpdated == false){
+        if (!hasBeenUpdated){
+            reproductiveTimer ++;
             if (previousState == FISH){
+                hasBeenUpdated = true;
                 for (Cell neighbor : neighborArray){
-                    if (neighbor.getPreviousState() == WATER && neighbor.hasBeenUpdated != true){
-                        neighbor.currentState = FISH;
-                        neighbor.reproductiveTimer = reproductiveTimer + 1;
-                        neighbor.hasBeenUpdated = true;
+                    if (neighbor.getPreviousState() == WATER && !neighbor.hasBeenUpdated){
                         currentState = WATER; //if reproduction timer is Good, FISH
                         if (reproductiveTimer >= REPRODUCETIME) {currentState = FISH;}
-                        reproductiveTimer = 0;
-                        hasBeenUpdated = true;
+                        moveAnimal(neighbor, FISH);
                         return;
                     }
                 }
-                currentState = previousState;
+            }
+            else if (previousState == SHARK){
+                hasBeenUpdated = true;
+                Cell fish = null;
+                currentState = WATER;
+                if (energy == 0){return;}
+                energy --;
+                for (Cell neighbor : neighborArray){
+                    if (!neighbor.hasBeenUpdated){
+                        if (neighbor.getPreviousState() == FISH || neighbor.getPreviousState() == WATER){
+                            fish = neighbor;
+                            if (neighbor.getPreviousState() == FISH){energy ++; moveShark(neighbor, SHARK); return;}
+                        }
+                    }
+                }
+                if (fish !=null && fish.getPreviousState() == WATER){moveShark(fish, SHARK); return;}
             }
             currentState = previousState;
         }
+    }
+
+    private void moveShark(Cell neighbor, int neighborCurrentState){
+        moveAnimal(neighbor, neighborCurrentState);
+        neighbor.energy = energy;
+        if (reproductiveTimer >= REPRODUCETIME){
+            currentState = SHARK;
+            reproductiveTimer = 0;
+            energy = 5;
+        }
+    }
+
+    private void moveAnimal(Cell neighbor, int neighborCurrentState){
+        neighbor.currentState = neighborCurrentState;
+        neighbor.reproductiveTimer = reproductiveTimer;
+        neighbor.hasBeenUpdated = true;
     }
 
     @Override
