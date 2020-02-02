@@ -13,7 +13,7 @@ public abstract class Cell extends Rectangle {
     protected ArrayList<Cell> neighborArray;
 
     public Cell(int cellState, int dimension){
-        super(dimension,dimension);
+        super(dimension-20,dimension-20);
         currentState = cellState;
         previousState = currentState;
         neighborArray = new ArrayList<Cell>();
