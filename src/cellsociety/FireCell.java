@@ -14,10 +14,14 @@ public class FireCell extends Cell {
     }
 
     /**
-     * @see Cell#updateCellValue()
+     * @see Cell#updateCellValue(ArrayList, int, int)
+     * @param gridOfCells
+     * @param cellColumn
+     * @param cellRow
      */
     @Override
-    public void updateCellValue(){
+    public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+        findNeighbors(gridOfCells, cellColumn, cellRow);
         double chanceOfCatch = Math.random();
         if (previousState == TREE){
             for (Cell neighbor : neighborArray){
@@ -36,11 +40,11 @@ public class FireCell extends Cell {
      * @see Cell#findNeighbors(ArrayList, int, int)
      */
     @Override
-    public void findNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
+    protected void findNeighbors(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
         int[] northNeighbor = {cellColumn, cellRow-1};
         int[] southNeighbor = {cellColumn, cellRow+1};
         int[] eastNeighbor = {cellColumn+1, cellRow};
-        int[] westNeighbor = {cellColumn-1, cellRow-1};
+        int[] westNeighbor = {cellColumn-1, cellRow};
         populateNeighbors(gridOfCells, northNeighbor);
         populateNeighbors(gridOfCells, southNeighbor);
         populateNeighbors(gridOfCells, eastNeighbor);

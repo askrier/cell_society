@@ -1,53 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<data game="test_case">
+<data game="simulation">
     <author>this dude</author>
+    <sim_type>Fire</sim_type>
     <cell_sides>4</cell_sides>
     <cell_rows>5</cell_rows>
-    <num_cells>30</num_cells>
-    <!--# of rows defines how many times to iterate through-->
-    <!--each row defines how long it should be to form the shape-->
-    <!--this allows hexagons and triangles to be implemented much faster-->
-    <!--also permits different shapes for the square cells as well-->
-    <rows>
-        <row_vals>
-            <value>2</value>
-            <value>2</value>
-            <value>2</value>
-            <value>2</value>
-            <value>2</value>
-            <value>2</value>
-        </row_vals>
-        <row_vals>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-        </row_vals>
-        <row_vals>
-            <value>0</value>
-            <value>0</value>
-            <value>0</value>
-            <value>0</value>
-           <value>0</value>
-           <value>0</value>
-        </row_vals>
-        <row_vals>
-           <value>2</value>
-           <value>2</value>
-           <value>2</value>
-            <value>2</value>
-            <value>2</value>
-            <value>2</value>
-        </row_vals>
-        <row_vals>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-            <value>1</value>
-        </row_vals>
-    </rows>
+    <cell_columns>6</cell_columns>
+    <spread_probability>0.15</spread_probability>
+    <vals>222222111111000000222222111111</vals>
 </data>
