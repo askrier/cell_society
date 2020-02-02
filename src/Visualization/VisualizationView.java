@@ -82,8 +82,8 @@ public class VisualizationView {
     gridPane = new GridPane();
 
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
-    gridPane.setHgap(12);
-    gridPane.setVgap(12);
+    gridPane.setHgap(10);
+    gridPane.setVgap(10);
     gridPane.setAlignment(Pos.CENTER);
     int i=0;
     int j=0;
@@ -134,8 +134,6 @@ public class VisualizationView {
 
   // update just the view to display next state
   private Node update (Grid grid) {
-    gridPane.setHgap(12);
-    gridPane.setVgap(12);
     int i=0;
     int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
