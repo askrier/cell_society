@@ -45,6 +45,7 @@ public class VisualizationModel {
     //this is going to be created by andrew's data and passed to create the grid
     myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), mySimData.getRows(), mySimData.getColumns(), 2,mySimData.getSimType());
     return myGrid;
+
   }
 
   /**
