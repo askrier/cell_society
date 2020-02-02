@@ -3,22 +3,10 @@ package Visualization;
 import static java.time.Duration.ofSeconds;
 
 import XML.SimData;
-import cellsociety.Cell;
-import cellsociety.FireCell;
 import cellsociety.Grid;
 import cellsociety.Main;
-import java.lang.reflect.Array;
+
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collection;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 
 public class VisualizationModel {
 
@@ -43,7 +31,7 @@ public class VisualizationModel {
   public Grid getGrid() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
     //this is going to be created by andrew's data and passed to create the grid
-    myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), mySimData.getRows(), mySimData.getColumns(), 2,mySimData.getSimType());
+    myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), 2,mySimData.getSimType());
     return myGrid;
 
   }
