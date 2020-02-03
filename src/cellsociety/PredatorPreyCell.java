@@ -15,7 +15,7 @@ public class PredatorPreyCell extends Cell{
     public PredatorPreyCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
-        myColorArray = new Color[]{Color.BLUE, Color.ORANGE, Color.GRAY};
+        myColorArray = new Color[]{Color.BLUE, Color.GREEN, Color.ORANGE};
         reproductiveTimer = 0;
         energy = 2;
         hasBeenUpdated = false;
@@ -73,15 +73,15 @@ public class PredatorPreyCell extends Cell{
     private boolean updateShark() {
         currentState = WATER;
         if (energy == 0){return true;}
-        energy --;
         for (Cell neighbor : neighborArray){
             if (!neighbor.hasBeenUpdated){
                 if (neighbor.getPreviousState() == FISH || neighbor.getPreviousState() == WATER){
                     water.add(neighbor);
-                    if (neighbor.getPreviousState() == FISH){energy ++; moveShark(neighbor); return true;}
+                    if (neighbor.getPreviousState() == FISH){energy = energy+0.5; moveShark(neighbor); return true;}
                 }
             }
         }
+        energy --;
         if (water.size()>0){
             Cell neighbor = RandomWaterCell();
             moveShark(neighbor);
