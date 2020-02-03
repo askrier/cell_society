@@ -9,12 +9,19 @@ public class SegregationCell extends Cell {
     private static final int EMPTY = 0;
     private static final int AGENTX = 1;
     private static final int AGENTO = 2;
-    private static final double SATISFIEDTHRESHOLD = 0.3;
+    private static final double SATISFIEDTHRESHOLD = 0.6;
 
     public SegregationCell(int currentState, int dimension){
         super (currentState, dimension);
         neighborArray = new ArrayList<Cell>();
         myColorArray = new Color[]{Color.WHITE, Color.RED, Color.MAGENTA};
+        hasBeenUpdated = false;
+    }
+
+    @Override
+    protected void resetState(){
+        previousState = currentState;
+        hasBeenUpdated = false;
     }
 
     /**
@@ -29,12 +36,11 @@ public class SegregationCell extends Cell {
         findNeighbors(gridOfCells, cellColumn, cellRow);
         if (previousState != EMPTY){
             double sameAgentPercent = percentageOfSameNeighbor();
-            if (sameAgentPercent < SATISFIEDTHRESHOLD){
-                Cell emptyCell = findEmptyCell(gridOfCells);
-                emptyCell.currentState = currentState;
-                currentState = EMPTY;
+            if (sameAgentPercent < SATISFIEDTHRESHOLD && findandUpdateEmptyCell(gridOfCells)){
+                previousState = EMPTY;
+                currentState = previousState;
             }
-            else {currentState = previousState;}
+            else {currentState = previousState; }
         }
         else {currentState = previousState;}
     }
@@ -50,16 +56,21 @@ public class SegregationCell extends Cell {
                 }
             }
         }
-        return sameAgentCount / totalAgentNeighbors;
+        if (totalAgentNeighbors == 0){return 0;}
+        return (sameAgentCount / totalAgentNeighbors);
     }
 
-    private Cell findEmptyCell(ArrayList<ArrayList<Cell>> gridOfCells){
+    private boolean findandUpdateEmptyCell(ArrayList<ArrayList<Cell>> gridOfCells){
         for(ArrayList<Cell> innerList : gridOfCells){
             for(Cell cell: innerList){
-                if(cell.getCurrentState() == EMPTY){return cell;}
+                if(!cell.hasBeenUpdated && cell.getPreviousState() == EMPTY ){
+                    cell.currentState = previousState;
+                    cell.hasBeenUpdated = true;
+                    return true;
+                }
             }
         }
-        return null;
+        return false;
     }
 
     /**
