@@ -10,7 +10,7 @@ public abstract class Cell extends Rectangle {
     protected int currentState;
     protected int reproductiveTimer;
     protected boolean hasBeenUpdated;
-    protected int energy;
+    protected double energy;
     protected ArrayList<Cell> neighborArray;
     protected Color[] myColorArray;
 
