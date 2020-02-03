@@ -57,6 +57,7 @@ public class Main extends Application {
     private VisualizationView display;
     public SimData simData;
     private Button browseFolder;
+    public boolean browsed = true;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -64,6 +65,7 @@ public class Main extends Application {
         model = new VisualizationModel();
         BorderPane layout = new BorderPane();
         Button startButton = start();
+        startButton.setDisable(browsed);
         Text gameName = getSplashText();
         layout.setTop(startButton);
         layout.setCenter(gameName);
@@ -74,6 +76,9 @@ public class Main extends Application {
                 Stage stage = new Stage();
                 File file = fileChooser.showOpenDialog(stage);
                 if(file!=null){
+                    browsed = false;
+                    browseFolder.setDisable(!browsed);
+                    startButton.setDisable(browsed);
                     XMLParser parser = new XMLParser("game");
                     simData = parser.getSimData(file);
                     model.setSimData(simData);
@@ -124,6 +129,7 @@ public class Main extends Application {
             }
         });
     }
+
     private Text getSplashText() throws IOException {
         Text gameName = new Text();
         Properties properties = new Properties();
