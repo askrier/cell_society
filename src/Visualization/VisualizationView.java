@@ -68,10 +68,12 @@ public class VisualizationView {
   private VisualizationModel myModel;
   private GridPane gridPane;
   private Button browseFolder;
+  private boolean stopped;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
     myGrid = myModel.getGrid();
+    myGrid.updateColors();
   }
 
   /**
@@ -105,6 +107,8 @@ public class VisualizationView {
   }
   private void stop(){
     myModel.end();
+    stopped = true;
+    browseFolder.setDisable(!stopped);
   }
   private void slow(){
     myModel.slow();
@@ -194,6 +198,7 @@ public class VisualizationView {
         }
       }
     });
+    browseFolder.setDisable(!stopped);
   }
 
   /**
