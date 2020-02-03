@@ -67,6 +67,7 @@ public class VisualizationView {
   // create model data
   private VisualizationModel myModel;
   private GridPane gridPane;
+  private Button browseFolder;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
@@ -167,6 +168,37 @@ public class VisualizationView {
 
     stepSimulation = makeButton("Step", event -> stepThrough());
     result.getChildren().add(stepSimulation);
+
+    FileChooser fileChooser = new FileChooser();
+    browseFolder = makeButton("Browse", new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        Stage stage = new Stage();
+        File file = fileChooser.showOpenDialog(stage);
+        if(file!=null){
+          XMLParser parser = new XMLParser("game");
+          simData = parser.getSimData(file);
+          myModel.setSimData(simData);
+          try {
+            myGrid = myModel.getGrid();
+            update(myGrid);
+            myGrid.updateColors();
+          } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+          } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+          } catch (InvocationTargetException e) {
+            e.printStackTrace();
+          } catch (InstantiationException e) {
+            e.printStackTrace();
+          } catch (IllegalAccessException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    });
+
+    result.getChildren().add(browseFolder);
 
     return result;
   }
