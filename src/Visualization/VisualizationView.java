@@ -81,22 +81,7 @@ public class VisualizationView {
     BorderPane root = new BorderPane();
     // must be first since other panels may refer to page
     gridPane = new GridPane();
-    myGrid.updateColors();
-    //Add the grid bricks to the root, this is the intial view/ intital settings grid
-    gridPane.setHgap(10);
-    gridPane.setVgap(10);
-    gridPane.setAlignment(Pos.CENTER);
-    int i=0;
-    int j=0;
-    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
-      i++;
-      j=0;
-      for (Cell cell : list) {
-        j++;
-        gridPane.add(cell,i,j);
-      }
-    }
-
+    update(myGrid);
     root.setCenter(gridPane);
     root.setTop(makeInputPanel());
     root.setBottom(makeInputField());
@@ -135,6 +120,11 @@ public class VisualizationView {
 
   // update just the view to display next state
   private Node update (Grid grid) {
+     myGrid.updateColors();
+    //Add the grid bricks to the root, this is the intial view/ intital settings grid
+    gridPane.setHgap(10);
+    gridPane.setVgap(10);
+    gridPane.setAlignment(Pos.CENTER);
     int i=0;
     int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
@@ -169,6 +159,13 @@ public class VisualizationView {
     stepSimulation = makeButton("Step", event -> stepThrough());
     result.getChildren().add(stepSimulation);
 
+    changeSim();
+    result.getChildren().add(browseFolder);
+
+    return result;
+  }
+
+  private void changeSim() {
     FileChooser fileChooser = new FileChooser();
     browseFolder = makeButton("Browse", new EventHandler<ActionEvent>() {
       @Override
@@ -197,10 +194,6 @@ public class VisualizationView {
         }
       }
     });
-
-    result.getChildren().add(browseFolder);
-
-    return result;
   }
 
   /**
@@ -236,11 +229,7 @@ public class VisualizationView {
   // make text field for input
   private Text makeInputField () {
     Text result = new Text();
-
-    // Down here is where the Simulation Name can be put in
     result.setText(simData.getSimType() + ": by " + simData.getAuthor());
-   // result.setText();
-
     return result;
   }
 
