@@ -38,7 +38,7 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
-    public static int FRAMES_PER_SECOND = 30;
+    public static int FRAMES_PER_SECOND = 10;
     public static int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
     public static double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
     private static final String RESOURCES = "resources";
