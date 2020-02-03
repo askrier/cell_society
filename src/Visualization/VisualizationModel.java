@@ -61,9 +61,9 @@ public class VisualizationModel {
     Main.animation.stop();
   }
 
-  public void slow(){ Main.animation.setRate(.5); }
+  public void slow(){ Main.animation.setRate(.1); }
 
-  public void speed(){ Main.animation.setRate(10); }
+  public void speed(){ Main.animation.setRate(7); }
 
   public void stepThrough(){
     Main.animation.pause();

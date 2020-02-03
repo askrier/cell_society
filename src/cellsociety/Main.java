@@ -38,7 +38,7 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
-    public static int FRAMES_PER_SECOND = 30;
+    public static int FRAMES_PER_SECOND = 10;
     public static int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
     public static double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
     private static final String RESOURCES = "resources";
@@ -69,35 +69,7 @@ public class Main extends Application {
         Text gameName = getSplashText();
         layout.setTop(startButton);
         layout.setCenter(gameName);
-        FileChooser fileChooser = new FileChooser();
-        browseFolder = browse("Browse", new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Stage stage = new Stage();
-                File file = fileChooser.showOpenDialog(stage);
-                if(file!=null){
-                    browsed = false;
-                    browseFolder.setDisable(!browsed);
-                    startButton.setDisable(browsed);
-                    XMLParser parser = new XMLParser("game");
-                    simData = parser.getSimData(file);
-                    model.setSimData(simData);
-                    try {
-                        model.getGrid();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
+        findSim(startButton);
         layout.setBottom(browseFolder);
         Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
         stage.setScene(myScene);
@@ -126,6 +98,38 @@ public class Main extends Application {
                 animation = new Timeline();
                 animation.setCycleCount(Timeline.INDEFINITE);
                 animation.getKeyFrames().add(frame);
+            }
+        });
+    }
+
+    private void findSim(Button startButton) {
+        FileChooser fileChooser = new FileChooser();
+        browseFolder = browse("Browse", new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Stage stage = new Stage();
+                File file = fileChooser.showOpenDialog(stage);
+                if(file!=null){
+                    browsed = false;
+                    browseFolder.setDisable(!browsed);
+                    startButton.setDisable(browsed);
+                    XMLParser parser = new XMLParser("game");
+                    simData = parser.getSimData(file);
+                    model.setSimData(simData);
+                    try {
+                        model.getGrid();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
@@ -164,7 +168,6 @@ public class Main extends Application {
         //calls grid update
         model.myGrid.updateGrid();
     }
-
 
     /**
      * Start of the program.
