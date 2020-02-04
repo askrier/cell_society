@@ -23,7 +23,8 @@ public class Grid {
 //        }
 //    }
 
-    public Grid(int vCellNum, int hCellNum, int states, String gameVariation, List<List<Integer>> cellVals) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    public Grid(int vCellNum, int hCellNum, int states, String gameVariation,
+        List<List<Integer>> cellVals, double spreadProb) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
         exists = true;
         int dimension;
