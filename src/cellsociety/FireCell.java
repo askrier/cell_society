@@ -8,10 +8,12 @@ public class FireCell extends Cell {
     private static final int EMPTY = 0;
     private static final int TREE = 1;
     private static final int BURNING = 2;
-    private static final double PROBABILITYOFCATCH = 0.15;
 
-    public FireCell(int currentState, int dimension){
+    private double probabilityOfCatch;
+
+    public FireCell(int currentState, int dimension, double probOfCatch){
         super (currentState, dimension);
+        probabilityOfCatch = probOfCatch;
         neighborArray = new ArrayList<Cell>();
         myColorArray = new Color[]{Color.YELLOW, Color.GREEN, Color.RED};
     }
@@ -29,7 +31,7 @@ public class FireCell extends Cell {
         double chanceOfCatch = Math.random();
         if (previousState == TREE){
             for (Cell neighbor : neighborArray){
-                if (neighbor.getPreviousState() == BURNING && chanceOfCatch < PROBABILITYOFCATCH){
+                if (neighbor.getPreviousState() == BURNING && chanceOfCatch < probabilityOfCatch){
                     currentState = BURNING;
                     break;
                 }
