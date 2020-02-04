@@ -122,8 +122,8 @@ public class VisualizationView {
   }
   private void stop(){
     myModel.end();
-   // stopped = true;
-  //  browseFolder.setDisable(!stopped);
+    stopped = true;
+    browseFolder.setDisable(!stopped);
   }
   private void slow(){
     myModel.slow();
@@ -140,6 +140,10 @@ public class VisualizationView {
   // update just the view to display next state
   private Node update (Grid grid) {
     myGrid.updateGrid();
+    gridP=new GridPane();
+    gridP.setHgap(10);
+    gridP.setVgap(10);
+    gridP.setAlignment(Pos.CENTER);
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
     int i=0;
     int j=0;
@@ -148,10 +152,11 @@ public class VisualizationView {
       j=0;
       for (Cell cell : list) {
         j++;
-        gridPane.add(cell,i,j);
+        gridP.add(cell,i,j);
       }
     }
-      return gridPane;
+    root.setCenter(gridP);
+      return gridP;
   }
 
 
@@ -195,7 +200,7 @@ public class VisualizationView {
 
           try {
             myGrid = myModel.getGrid();
-            //update(myGrid);
+            update(myGrid);
 
           } catch (ClassNotFoundException e) {
             e.printStackTrace();
