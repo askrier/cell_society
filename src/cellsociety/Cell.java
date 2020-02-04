@@ -78,4 +78,8 @@ public abstract class Cell extends Rectangle {
         setFill(myColorArray[currentState]);
     }
 
+    public boolean checkGameOn(ArrayList<ArrayList<Cell>> gridOfCells){
+        return true;
+    }
+
 }

@@ -10,6 +10,7 @@ public class Grid {
     //these were the booleans I was using to call the grid initial and updated states, but do it how it works for yall
     public boolean exists;
     public boolean update = false;
+    public boolean GameOn = true;
 
 //    public <T extends Cell> Grid(int height, int width, int vCellNum, int hCellNum, Class<T> gameVariation) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 //        for (int i = 0; i < vCellNum; i++) {
@@ -41,7 +42,6 @@ public class Grid {
         for (int i = 0; i < vCellNum; i++) {
             myArrayOfCells.add(new ArrayList<Cell>());
             for (int j=0; j< hCellNum; j++){
-                System.out.println(cellVals.get(j));
                 intVal = cellVals.get(j).get(i);
                 Constructor constructor = cls.getConstructor(int.class,int.class);
                 Object objectCell = constructor.newInstance(intVal,dimension);
@@ -54,20 +54,23 @@ public class Grid {
     }
 
     public void updateGrid(){
-        update = true;
-        for(ArrayList<Cell> innerList : myArrayOfCells){
-            for(Cell cell: innerList){
-                cell.resetState();
+        GameOn = myArrayOfCells.get(0).get(0).checkGameOn(myArrayOfCells);
+        if(GameOn){
+            update = true;
+            for(ArrayList<Cell> innerList : myArrayOfCells){
+                for(Cell cell: innerList){
+                    cell.resetState();
+                }
             }
-        }
-        for(ArrayList<Cell> innerList : myArrayOfCells){
-            int arrayIndex = myArrayOfCells.indexOf(innerList);
-            for(Cell cell: innerList){
-                int cellIndex = innerList.indexOf(cell);
-                cell.updateCellValue(myArrayOfCells, arrayIndex, cellIndex);
+            for(ArrayList<Cell> innerList : myArrayOfCells){
+                int arrayIndex = myArrayOfCells.indexOf(innerList);
+                for(Cell cell: innerList){
+                    int cellIndex = innerList.indexOf(cell);
+                    cell.updateCellValue(myArrayOfCells, arrayIndex, cellIndex);
+                }
             }
+            updateColors();
         }
-        updateColors();
     }
 
     public void updateColors(){
