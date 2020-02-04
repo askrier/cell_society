@@ -23,7 +23,7 @@ public class Grid {
 //        }
 //    }
 
-    public Grid(int vCellNum, int hCellNum, int states, String gameVariation, List<List<Integer>> cellVals) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    public Grid(int vCellNum, int hCellNum, int states, String gameVariation, List<List<Integer>> cellVals, double spreadProb) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
         exists = true;
         int dimension;
@@ -45,6 +45,10 @@ public class Grid {
                 intVal = cellVals.get(j).get(i);
                 Constructor constructor = cls.getConstructor(int.class,int.class);
                 Object objectCell = constructor.newInstance(intVal,dimension);
+                if (gameVariation.equals("cellsociety.FireCell")){
+                    constructor = cls.getConstructor(int.class,int.class, double.class);
+                    objectCell = constructor.newInstance(intVal,dimension, spreadProb);
+                }
                 Cell cell = (Cell) objectCell;
                 myArrayOfCells.get(i).add(cell);
             }
