@@ -4,6 +4,7 @@ import XML.SimData;
 import XML.XMLParser;
 import cellsociety.Cell;
 import cellsociety.Grid;
+import cellsociety.Main;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -67,23 +68,37 @@ public class VisualizationView {
   // create model data
   private VisualizationModel myModel;
   private GridPane gridPane;
+  private GridPane gridP;
   private Button browseFolder;
   private boolean stopped;
+  private BorderPane root;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
     myGrid = myModel.getGrid();
-    myGrid.updateColors();
   }
 
   /**
    * Returns scene for the browser so it can be added to stage.
    */
   public Scene makeScene (int width, int height) {
-    BorderPane root = new BorderPane();
-    // must be first since other panels may refer to page
+    root = new BorderPane();
     gridPane = new GridPane();
-    update(myGrid);
+    myGrid.updateColors();
+    gridPane.setHgap(10);
+    gridPane.setVgap(10);
+    gridPane.setAlignment(Pos.CENTER);
+    //Add the grid bricks to the root, this is the intial view/ intital settings grid
+    int i=0;
+    int j=0;
+    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
+      i++;
+      j=0;
+      for (Cell cell : list) {
+        j++;
+        gridPane.add(cell,i,j);
+      }
+    }
     root.setCenter(gridPane);
     root.setTop(makeInputPanel());
     root.setBottom(makeInputField());
@@ -124,11 +139,12 @@ public class VisualizationView {
 
   // update just the view to display next state
   private Node update (Grid grid) {
-     myGrid.updateColors();
+    myGrid.updateGrid();
+    gridP=new GridPane();
+    gridP.setHgap(10);
+    gridP.setVgap(10);
+    gridP.setAlignment(Pos.CENTER);
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
-    gridPane.setHgap(10);
-    gridPane.setVgap(10);
-    gridPane.setAlignment(Pos.CENTER);
     int i=0;
     int j=0;
     for(ArrayList<Cell> list: myGrid.getListOfCells()) {
@@ -136,10 +152,11 @@ public class VisualizationView {
       j=0;
       for (Cell cell : list) {
         j++;
-        gridPane.add(cell,i,j);
+        gridP.add(cell,i,j);
       }
     }
-      return gridPane;
+    root.setCenter(gridP);
+      return gridP;
   }
 
 
@@ -180,10 +197,11 @@ public class VisualizationView {
           XMLParser parser = new XMLParser("game");
           simData = parser.getSimData(file);
           myModel.setSimData(simData);
+
           try {
             myGrid = myModel.getGrid();
             update(myGrid);
-            myGrid.updateColors();
+
           } catch (ClassNotFoundException e) {
             e.printStackTrace();
           } catch (NoSuchMethodException e) {
@@ -195,6 +213,7 @@ public class VisualizationView {
           } catch (IllegalAccessException e) {
             e.printStackTrace();
           }
+
         }
       }
     });
