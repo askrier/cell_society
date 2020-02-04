@@ -16,6 +16,20 @@ public class PercolationCell extends Cell {
     }
 
     @Override
+    public boolean checkGameOn(ArrayList<ArrayList<Cell>> gridOfCells){
+        for(Cell cell: gridOfCells.get(0)){
+            if(cell.getCurrentState()==PERCOLATED){
+                for(Cell cell2: gridOfCells.get(gridOfCells.size()-1)){
+                    if(cell2.currentState==PERCOLATED){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
     public void updateCellValue(ArrayList<ArrayList<Cell>> gridOfCells, int cellColumn, int cellRow){
         neighborArray.clear();
         findNeighbors(gridOfCells, cellColumn, cellRow);
