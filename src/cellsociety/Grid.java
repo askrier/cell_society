@@ -43,11 +43,14 @@ public class Grid {
             myArrayOfCells.add(new ArrayList<Cell>());
             for (int j=0; j< hCellNum; j++){
                 intVal = cellVals.get(j).get(i);
-                Constructor constructor = cls.getConstructor(int.class,int.class);
-                Object objectCell = constructor.newInstance(intVal,dimension);
+                Object objectCell;
                 if (gameVariation.equals("cellsociety.FireCell")){
-                    constructor = cls.getConstructor(int.class,int.class, double.class);
+                    Constructor<?> constructor = cls.getConstructor(int.class, int.class, double.class);
                     objectCell = constructor.newInstance(intVal,dimension, spreadProb);
+                }
+                else{
+                    Constructor constructor = cls.getConstructor(int.class,int.class);
+                    objectCell = constructor.newInstance(intVal,dimension);
                 }
                 Cell cell = (Cell) objectCell;
                 myArrayOfCells.get(i).add(cell);
