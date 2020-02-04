@@ -6,11 +6,11 @@ import java.lang.reflect.*;
 import java.util.List;
 
 public class Grid {
-    public ArrayList<ArrayList<Cell>> myArrayOfCells = new ArrayList<ArrayList<Cell>>();
+    private ArrayList<ArrayList<Cell>> myArrayOfCells = new ArrayList<ArrayList<Cell>>();
     //these were the booleans I was using to call the grid initial and updated states, but do it how it works for yall
     public boolean exists;
     public boolean update = false;
-    public boolean GameOn = true;
+    private boolean GameOn = true;
 
 //    public <T extends Cell> Grid(int height, int width, int vCellNum, int hCellNum, Class<T> gameVariation) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 //        for (int i = 0; i < vCellNum; i++) {
