@@ -49,5 +49,5 @@ public class VisualizationModel {
     animation.pause();
     myGrid.updateGrid();
   }
-  
+
 }

@@ -80,13 +80,9 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 try {
-
                     display = new VisualizationView(model);
                     display.setSimData(simData);
-
-
                 } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-                    //  e.printStackTrace();
                 }
                 stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
                 stage.show();
