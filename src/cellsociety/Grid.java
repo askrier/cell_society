@@ -12,17 +12,6 @@ public class Grid {
     //public boolean update = false;
     private boolean GameOn = true;
 
-//    public <T extends Cell> Grid(int height, int width, int vCellNum, int hCellNum, Class<T> gameVariation) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-//        for (int i = 0; i < vCellNum; i++) {
-//            myArrayOfCells.add(new ArrayList<Cell>());
-//            for (int j=0; j< hCellNum; j++){
-//                Cell obj = getInstance(gameVariation);
-//                myArrayOfCells.get(i).add(obj);
-//
-//            }
-//        }
-//    }
-
     public Grid(int vCellNum, int hCellNum, int states, String gameVariation, List<List<Integer>> cellVals, double spreadProb) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
       //  exists = true;
@@ -92,8 +81,4 @@ public class Grid {
         return myArrayOfCells;
     }
 
-    private int getRandom(int num){
-        double rAsFloat = 1 * (num + Math.random( ) );
-        return (int)rAsFloat;
-    }
 }
