@@ -30,16 +30,11 @@ public class VisualizationModel {
   /**
    * Returns the state of grid, if there is a grid
    */
-  public Grid start (Timeline animation) {
-    animation = animation;
+  public Grid start (Timeline Animation) {
+    animation = Animation;
     animation.play();
-   // System.out.println("hi");
-   // if(hasNext()) {
-      //update the grid
       myGrid.updateGrid();
       return myGrid;
-  //  }
-   // return null;
   }
 
   public void end(){
@@ -52,16 +47,7 @@ public class VisualizationModel {
 
   public void stepThrough(){
     animation.pause();
-   // myGrid.update = true;
     myGrid.updateGrid();
   }
-
-  /**
-   * Returns true if there is a next Grid available
-   */
- // public boolean has () { return myGrid.exists; }
-
- // public boolean hasNext(){
-   // return myGrid.update;
- // }
+  
 }
