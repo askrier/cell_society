@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -72,6 +73,7 @@ public class VisualizationView {
   private Button browseFolder;
   private boolean stopped;
   private BorderPane root;
+  private Timeline animation;
 
   public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
     myModel = model;
@@ -118,7 +120,7 @@ public class VisualizationView {
 
   // move to the next URL in the history
   private void start () {
-    myModel.next();
+    myModel.start(animation);
   }
   private void stop(){
     myModel.end();
@@ -234,4 +236,8 @@ public class VisualizationView {
   }
 
   public Grid getSetGrid () {return myGrid;}
+
+  public void setAnimation(Timeline Animation) {
+    animation = Animation;
+  }
 }
