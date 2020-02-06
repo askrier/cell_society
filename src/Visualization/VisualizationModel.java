@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class VisualizationModel {
 
-  public Grid myGrid;
+  private Grid myGrid;
   private SimData mySimData;
   private String myFileURL;
   private VisualizationView view;
@@ -38,10 +38,10 @@ public class VisualizationModel {
    * Returns the state of grid, if there is a grid
    */
   public Grid start () {
-    if (has()) {
+    //if (has()) {
       return myGrid;
-    }
-    return null;
+  //  }
+  // return null;
   }
 
   /**
@@ -49,12 +49,13 @@ public class VisualizationModel {
    */
   public Grid next(){
     Main.animation.play();
-    if(hasNext()) {
+    System.out.println("hi");
+   // if(hasNext()) {
       //update the grid
       myGrid.updateGrid();
       return myGrid;
-    }
-    return null;
+  //  }
+   // return null;
   }
 
   public void end(){
@@ -67,16 +68,16 @@ public class VisualizationModel {
 
   public void stepThrough(){
     Main.animation.pause();
-    myGrid.update = true;
+   // myGrid.update = true;
     myGrid.updateGrid();
   }
 
   /**
    * Returns true if there is a next Grid available
    */
-  public boolean has () { return myGrid.exists; }
+ // public boolean has () { return myGrid.exists; }
 
-  public boolean hasNext(){
-    return myGrid.update;
-  }
+ // public boolean hasNext(){
+   // return myGrid.update;
+ // }
 }

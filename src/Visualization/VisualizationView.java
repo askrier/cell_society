@@ -62,8 +62,8 @@ public class VisualizationView {
   private Button speedSimulation;
   private Button slowSimulation;
   private Button stepSimulation;
-  public Grid myGrid;
-  public SimData simData;
+  private Grid myGrid;
+  private  SimData simData;
   private Scene myPage;
   // create model data
   private VisualizationModel myModel;
@@ -110,7 +110,7 @@ public class VisualizationView {
   }
 
   // Display given message as an error in the GUI
-  private void showError (String message) {
+  public void showError (String message) {
     Alert alert = new Alert(AlertType.ERROR);
     alert.setContentText(message);
     alert.showAndWait();
@@ -194,51 +194,23 @@ public class VisualizationView {
         Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
         if(file!=null){
+
           XMLParser parser = new XMLParser("game");
           simData = parser.getSimData(file);
           myModel.setSimData(simData);
-
           try {
             myGrid = myModel.getGrid();
+            myGrid.updateColors();
             update(myGrid);
 
-          } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-          } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-          } catch (InvocationTargetException e) {
-            e.printStackTrace();
-          } catch (InstantiationException e) {
-            e.printStackTrace();
-          } catch (IllegalAccessException e) {
-            e.printStackTrace();
+          } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            //  e.printStackTrace();
           }
 
         }
       }
     });
     browseFolder.setDisable(!stopped);
-  }
-
-  /**
-   * Display given Grid, if not there it throws an error
-   */
-  public void showPage (Grid grid) {
-
-    if (grid != null) {
-      update(grid);
-    }
-    else {
-      showError("Could not load grid");
-    }
-
-  }
-
-  private class ShowPage implements EventHandler<ActionEvent> {
-    @Override
-    public void handle (ActionEvent event) {
-      showPage(myGrid);
-    }
   }
 
   // makes a button using either an image or a label
@@ -260,4 +232,6 @@ public class VisualizationView {
   public void setSimData (SimData sim) {
     simData = sim;
   }
+
+  public Grid getSetGrid () {return myGrid;}
 }

@@ -38,26 +38,27 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
-    public static int FRAMES_PER_SECOND = 10;
-    public static int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-    public static double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
+    private static int FRAMES_PER_SECOND = 10;
+    private static int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
+    private static double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
     private static final String RESOURCES = "resources";
-    public static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
-    public static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
-    public static final String STYLESHEET = "default.css";
-    public static final double WIDTH = 800;
-    public static final double HEIGHT = 800;
-    public static final Paint BACKGROUND = Color.GRAY;
+    private static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
+    private static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
+    private static final String STYLESHEET = "default.css";
+    private static final double WIDTH = 800;
+    private static final double HEIGHT = 800;
+    private static final Paint BACKGROUND = Color.GRAY;
     public static Timeline animation;
-    public static KeyFrame frame;
-    public Group root;
-    public static final Dimension DEFAULT_SIZE = new Dimension(800, 800);
+    private static KeyFrame frame;
+    private Group root;
+    private static final Dimension DEFAULT_SIZE = new Dimension(800, 800);
     private Desktop desktop = Desktop.getDesktop();
     private VisualizationModel model;
     private VisualizationView display;
-    public SimData simData;
+    private SimData simData;
     private Button browseFolder;
-    public boolean browsed = true;
+    private boolean browsed = true;
+    private Grid myGrid;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -81,16 +82,8 @@ public class Main extends Application {
                 try {
                     display = new VisualizationView(model);
                     display.setSimData(simData);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+                    //  e.printStackTrace();
                 }
                 stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
                 stage.show();
@@ -116,19 +109,6 @@ public class Main extends Application {
                     XMLParser parser = new XMLParser("game");
                     simData = parser.getSimData(file);
                     model.setSimData(simData);
-                    try {
-                        model.getGrid();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         });
@@ -166,7 +146,8 @@ public class Main extends Application {
 
     public void step(double elapsedTime) {
         //calls grid update
-        model.myGrid.updateGrid();
+        myGrid = display.getSetGrid();
+        myGrid.updateGrid();
     }
 
     /**
