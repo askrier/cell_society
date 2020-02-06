@@ -15,6 +15,14 @@ public class SimData {
             "vals"
     );
 
+    private static final int AUTHOR_INDEX = 0;
+    private static final int SIM_TYPE_INDEX = 1;
+    private static final int CELL_SIDES_INDEX = 2;
+    private static final int CELL_ROWS_INDEX = 3;
+    private static final int CELL_COLUMNS_INDEX = 4;
+    private static final int SPREAD_PROBABILITY_INDEX = 5;
+    private static final int VALS_INDEX = 6;
+
     private String mySimType;
     private String myAuthor;
     private int myCellSides;
@@ -38,13 +46,13 @@ public class SimData {
     }
 
     public SimData (Map<String, String> dataValues) {
-        this(dataValues.get(DATA_FIELDS.get(0)),
-                dataValues.get(DATA_FIELDS.get(1)),
-                Integer.parseInt(dataValues.get(DATA_FIELDS.get(2))),
-                Integer.parseInt(dataValues.get(DATA_FIELDS.get(3))),
-                Integer.parseInt(dataValues.get(DATA_FIELDS.get(4))),
-                dataValues.get(DATA_FIELDS.get(6)),
-                Float.parseFloat(dataValues.get(DATA_FIELDS.get(5))),
+        this(dataValues.get(DATA_FIELDS.get(AUTHOR_INDEX)),
+                dataValues.get(DATA_FIELDS.get(SIM_TYPE_INDEX)),
+                Integer.parseInt(dataValues.get(DATA_FIELDS.get(CELL_SIDES_INDEX))),
+                Integer.parseInt(dataValues.get(DATA_FIELDS.get(CELL_ROWS_INDEX))),
+                Integer.parseInt(dataValues.get(DATA_FIELDS.get(CELL_COLUMNS_INDEX))),
+                dataValues.get(DATA_FIELDS.get(VALS_INDEX)),
+                Float.parseFloat(dataValues.get(DATA_FIELDS.get(SPREAD_PROBABILITY_INDEX))),
                 null);
         //System.out.println(dataValues.get(DATA_FIELDS.get(6)));
         setVals();
