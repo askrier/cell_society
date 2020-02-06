@@ -48,7 +48,7 @@ public class Main extends Application {
     private static final double WIDTH = 800;
     private static final double HEIGHT = 800;
     private static final Paint BACKGROUND = Color.GRAY;
-    public static Timeline animation;
+    private static Timeline animation;
     private static KeyFrame frame;
     private Group root;
     private static final Dimension DEFAULT_SIZE = new Dimension(800, 800);
@@ -114,6 +114,8 @@ public class Main extends Application {
         });
     }
 
+
+
     private Text getSplashText() throws IOException {
         Text gameName = new Text();
         Properties properties = new Properties();
@@ -149,6 +151,9 @@ public class Main extends Application {
         myGrid = display.getSetGrid();
         myGrid.updateGrid();
     }
+
+    public Timeline getAnimation(){ return animation;}
+
 
     /**
      * Start of the program.

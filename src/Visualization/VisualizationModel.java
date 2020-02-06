@@ -14,6 +14,7 @@ public class VisualizationModel {
   private SimData mySimData;
   private String myFileURL;
   private VisualizationView view;
+  private Main main;
 
   public VisualizationModel() {
     myFileURL = null;
@@ -48,7 +49,8 @@ public class VisualizationModel {
    * Returns the next state of grid, if there is an update
    */
   public Grid next(){
-    Main.animation.play();
+
+    main.getAnimation().play();
     System.out.println("hi");
    // if(hasNext()) {
       //update the grid
@@ -59,15 +61,15 @@ public class VisualizationModel {
   }
 
   public void end(){
-    Main.animation.stop();
+    main.getAnimation().stop();
   }
 
-  public void slow(){ Main.animation.setRate(.1); }
+  public void slow(){  main.getAnimation().setRate(.1); }
 
-  public void speed(){ Main.animation.setRate(7); }
+  public void speed(){  main.getAnimation().setRate(7); }
 
   public void stepThrough(){
-    Main.animation.pause();
+    main.getAnimation().pause();
    // myGrid.update = true;
     myGrid.updateGrid();
   }
