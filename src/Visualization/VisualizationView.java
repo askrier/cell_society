@@ -200,15 +200,10 @@ public class VisualizationView {
           XMLParser parser = new XMLParser("game");
           simData = parser.getSimData(file);
           myModel.setSimData(simData);
-          try {
             myGrid = myModel.getGrid();
             myGrid.updateColors();
             update(myGrid);
 
-          } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-            //dialog box
-            // allow to browse for another file 
-          }
 
         }
       }
