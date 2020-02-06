@@ -80,8 +80,11 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 try {
+
                     display = new VisualizationView(model);
                     display.setSimData(simData);
+
+
                 } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                     //  e.printStackTrace();
                 }
@@ -91,9 +94,11 @@ public class Main extends Application {
                 animation = new Timeline();
                 animation.setCycleCount(Timeline.INDEFINITE);
                 animation.getKeyFrames().add(frame);
+                display.setAnimation(animation);
             }
         });
     }
+
 
     private void findSim(Button startButton) {
         FileChooser fileChooser = new FileChooser();
@@ -151,8 +156,6 @@ public class Main extends Application {
         myGrid = display.getSetGrid();
         myGrid.updateGrid();
     }
-
-    public Timeline getAnimation(){ return animation;}
 
 
     /**

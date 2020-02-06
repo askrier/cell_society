@@ -1,28 +1,20 @@
 package Visualization;
 
-import static java.time.Duration.ofSeconds;
-
 import XML.SimData;
 import cellsociety.Grid;
 import cellsociety.Main;
 
 import java.lang.reflect.InvocationTargetException;
+import javafx.animation.Timeline;
 
 public class VisualizationModel {
 
   private Grid myGrid;
   private SimData mySimData;
-  private String myFileURL;
-  private VisualizationView view;
-  private Main main;
+  private Timeline animation;
 
   public VisualizationModel() {
-    myFileURL = null;
     myGrid = null;
-  }
-
-  public void getFile (String file){
-    myFileURL = file;
   }
 
   public void setSimData (SimData sim) {
@@ -38,20 +30,10 @@ public class VisualizationModel {
   /**
    * Returns the state of grid, if there is a grid
    */
-  public Grid start () {
-    //if (has()) {
-      return myGrid;
-  //  }
-  // return null;
-  }
-
-  /**
-   * Returns the next state of grid, if there is an update
-   */
-  public Grid next(){
-
-    main.getAnimation().play();
-    System.out.println("hi");
+  public Grid start (Timeline animation) {
+    animation = animation;
+    animation.play();
+   // System.out.println("hi");
    // if(hasNext()) {
       //update the grid
       myGrid.updateGrid();
@@ -61,15 +43,15 @@ public class VisualizationModel {
   }
 
   public void end(){
-    main.getAnimation().stop();
+    animation.stop();
   }
 
-  public void slow(){  main.getAnimation().setRate(.1); }
+  public void slow(){ animation.setRate(.1); }
 
-  public void speed(){  main.getAnimation().setRate(7); }
+  public void speed(){  animation.setRate(7); }
 
   public void stepThrough(){
-    main.getAnimation().pause();
+    animation.pause();
    // myGrid.update = true;
     myGrid.updateGrid();
   }
