@@ -8,8 +8,8 @@ import java.util.List;
 public class Grid {
     private ArrayList<ArrayList<Cell>> myArrayOfCells = new ArrayList<ArrayList<Cell>>();
     //these were the booleans I was using to call the grid initial and updated states, but do it how it works for yall
-    public boolean exists;
-    public boolean update = false;
+    //public boolean exists;
+    //public boolean update = false;
     private boolean GameOn = true;
 
 //    public <T extends Cell> Grid(int height, int width, int vCellNum, int hCellNum, Class<T> gameVariation) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
@@ -25,7 +25,7 @@ public class Grid {
 
     public Grid(int vCellNum, int hCellNum, int states, String gameVariation, List<List<Integer>> cellVals, double spreadProb) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         int intVal = 0;
-        exists = true;
+      //  exists = true;
         int dimension;
         int width = (int)(800/hCellNum);
         int height = (int)(800/vCellNum);
@@ -63,7 +63,7 @@ public class Grid {
     public void updateGrid(){
         GameOn = myArrayOfCells.get(0).get(0).checkGameOn(myArrayOfCells);
         if(GameOn){
-            update = true;
+          //  update = true;
             for(ArrayList<Cell> innerList : myArrayOfCells){
                 for(Cell cell: innerList){
                     cell.resetState();
