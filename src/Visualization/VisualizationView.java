@@ -48,9 +48,9 @@ import org.w3c.dom.events.EventTarget;
 public class VisualizationView {
 
   private static final String RESOURCES = "resources";
-  public static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
-  public static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
-  public static final String STYLESHEET = "default.css";
+  private static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
+  private static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
+  private static final String STYLESHEET = "default.css";
 
   private ResourceBundle myResources;
   //scene to send to application
