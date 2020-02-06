@@ -206,6 +206,8 @@ public class VisualizationView {
             update(myGrid);
 
           } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            //dialog box
+            // allow to browse for another file 
           }
 
         }

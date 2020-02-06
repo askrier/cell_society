@@ -81,9 +81,10 @@ public class Main extends Application {
             public void handle(ActionEvent event) {
                 try {
                     display = new VisualizationView(model);
-                    display.setSimData(simData);
                 } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+                    //rebrowse for another file
                 }
+                display.setSimData(simData);
                 stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
                 stage.show();
                 frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
