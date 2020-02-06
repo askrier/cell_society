@@ -27,8 +27,8 @@ public class Grid {
         int intVal = 0;
       //  exists = true;
         int dimension;
-        int width = (int)(800/hCellNum);
-        int height = (int)(800/vCellNum);
+        int width = (800/hCellNum);
+        int height = (800/vCellNum);
         if(width<height){
             dimension=width;
         }
@@ -37,7 +37,6 @@ public class Grid {
         }
 
         Class<?> cls = Class.forName(gameVariation);
-
 
         for (int i = 0; i < vCellNum; i++) {
             myArrayOfCells.add(new ArrayList<Cell>());
@@ -88,10 +87,6 @@ public class Grid {
         }
     }
 
-//    public <T extends Cell> Cell getInstance(Class<T> gameVariation) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-//        Cell cell = gameVariation.getDeclaredConstructor().newInstance();
-//        return cell;
-//    }
 
     public ArrayList<ArrayList<Cell>> getListOfCells(){
         return myArrayOfCells;
