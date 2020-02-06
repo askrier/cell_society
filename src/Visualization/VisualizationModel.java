@@ -1,7 +1,5 @@
 package Visualization;
 
-import static java.time.Duration.ofSeconds;
-
 import XML.SimData;
 import cellsociety.Grid;
 import cellsociety.Main;
@@ -12,17 +10,10 @@ public class VisualizationModel {
 
   private Grid myGrid;
   private SimData mySimData;
-  private String myFileURL;
-  private VisualizationView view;
   private Main main;
 
   public VisualizationModel() {
-    myFileURL = null;
     myGrid = null;
-  }
-
-  public void getFile (String file){
-    myFileURL = file;
   }
 
   public void setSimData (SimData sim) {
