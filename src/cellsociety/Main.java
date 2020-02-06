@@ -79,11 +79,7 @@ public class Main extends Application {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    display = new VisualizationView(model);
-                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-                    //rebrowse for another file
-                }
+                display = new VisualizationView(model);
                 display.setSimData(simData);
                 stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
                 stage.show();
