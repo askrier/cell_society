@@ -206,7 +206,6 @@ public class VisualizationView {
             update(myGrid);
 
           } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-            //  e.printStackTrace();
           }
 
         }
