@@ -75,7 +75,7 @@ public class VisualizationView {
   private BorderPane root;
   private Timeline animation;
 
-  public VisualizationView(VisualizationModel model) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+  public VisualizationView(VisualizationModel model) {
     myModel = model;
     myGrid = myModel.getGrid();
   }
