@@ -85,6 +85,7 @@ public class VisualizationView {
   private boolean browseAgain;
   private int dualityCount =0;
 
+
   public VisualizationView(VisualizationModel model) {
     myModel = model;
     myGrid = myModel.getGrid();
@@ -147,11 +148,6 @@ public class VisualizationView {
 
   private void stop() {
     myModel.end();
-    browseAgain = false;
-  }
-
-  private void slow() {
-    myModel.slow();
   }
 
   private void speed() {
@@ -190,10 +186,10 @@ public class VisualizationView {
     stopSimulation = makeButton("Stop", event -> stop());
     result.getChildren().add(stopSimulation);
 
-    slowSimulation = makeButton("Slow", event -> slow());
+   // slowSimulation = makeButton("Slow", event -> slow());
    // result.getChildren().add(slowSimulation);
 
-    speedSimulation = makeButton("Speed", event -> speed());
+   // speedSimulation = makeButton("Speed", event -> speed());
   //  result.getChildren().add(speedSimulation);
 
     stepSimulation = makeButton("Step", event -> stepThrough());
@@ -269,7 +265,7 @@ public class VisualizationView {
 
   private Text makeInputField() {
     Text result = new Text();
-    result.setFont(Font.font("Apple Chancery", 20));
+    result.setId("result");
     result.setText(simData.getSimType() + ": by " + simData.getAuthor());
     return result;
   }

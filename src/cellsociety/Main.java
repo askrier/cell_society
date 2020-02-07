@@ -58,6 +58,7 @@ public class Main extends Application {
     private Button browseFolder;
     private boolean browsed = true;
     private Grid myGrid;
+    private int distance =5;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -68,7 +69,7 @@ public class Main extends Application {
         startButton.setDisable(browsed);
         Text gameName = getSplashText();
         HBox result = new HBox();
-        result.setSpacing(5);
+        result.setSpacing(distance);
         layout.setCenter(gameName);
         findSim(startButton);
         result.getChildren().add(startButton);
@@ -122,6 +123,7 @@ public class Main extends Application {
 
     private Text getSplashText() throws IOException {
         Text gameName = new Text();
+
         Properties properties = new Properties();
         properties.load(new FileInputStream("src/resources/UserInterface.properties"));
         Set p = properties.keySet();
@@ -131,7 +133,7 @@ public class Main extends Application {
             key = (String) i.next();
         }
         gameName.setText(properties.getProperty(key));
-        gameName.setFont(Font.font("Apple Chancery",100));
+        gameName.setId("gameName");
         gameName.setTextAlignment(TextAlignment.CENTER);
         return gameName;
     }

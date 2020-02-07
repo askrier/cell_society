@@ -14,12 +14,13 @@ public class VisualizationModel {
     myGrid = null;
   }
 
-  public void setSimData (SimData sim) {
+  public void setSimData(SimData sim) {
     mySimData = sim;
   }
 
-  public Grid getGrid(){
-    myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), mySimData.getSimType(), mySimData.getValList(),mySimData.getSpreadProb());
+  public Grid getGrid() {
+    myGrid = new Grid(mySimData.getRows(), mySimData.getColumns(), mySimData.getSimType(),
+        mySimData.getValList(), mySimData.getSpreadProb());
     return myGrid;
 
   }
@@ -27,25 +28,23 @@ public class VisualizationModel {
   /**
    * Returns the state of grid, if there is a grid
    */
-  public Grid start (Timeline Animation) {
+  public Grid start(Timeline Animation) {
     animation = Animation;
     animation.play();
-      myGrid.updateGrid();
-      return myGrid;
+    myGrid.updateGrid();
+    return myGrid;
   }
 
-  public void end(){
+  public void end() {
     animation.stop();
   }
 
-  public void slow(){ animation.setRate(.1); }
+  public void speed(double speed) {
+    animation.setRate(speed);
+  }
 
-  public void speed(double speed){
-    animation.setRate(speed); }
-
-  public void stepThrough(){
+  public void stepThrough() {
     animation.pause();
     myGrid.updateGrid();
   }
-
 }
