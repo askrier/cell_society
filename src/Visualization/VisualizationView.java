@@ -64,7 +64,9 @@ public class VisualizationView {
   private Button speedSimulation;
   private Button slowSimulation;
   private Button stepSimulation;
+  private Button chooseAnother;
   private Grid myGrid;
+  private Grid myGridTwo;
   private SimData simData;
   private VisualizationModel myModel;
   private GridPane gridPane;
@@ -75,10 +77,12 @@ public class VisualizationView {
   private double speed;
   private Slider slider;
   private Label sliderCaption;
+  private boolean browseAgain;
 
   public VisualizationView(VisualizationModel model) {
     myModel = model;
     myGrid = myModel.getGrid();
+    myGridTwo = null;
   }
 
   /**
@@ -91,6 +95,7 @@ public class VisualizationView {
     createGrid(gridPane);
     root.setBottom(makeInputPanel());
     root.setTop(makeInputField());
+    root.setCenter(gridPane);
     Scene scene = new Scene(root, width, height);
     scene.getStylesheets()
         .add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
@@ -109,7 +114,9 @@ public class VisualizationView {
         gridPane.add(cell, i, j);
       }
     }
-    root.setCenter(gridPane);
+    if(browseAgain){
+      root.setRight(gridPane);
+    }
   }
 
   // Display given message as an error in the GUI
@@ -126,6 +133,7 @@ public class VisualizationView {
 
   private void stop() {
     myModel.end();
+    browseAgain = false;
   }
 
   private void slow() {
@@ -141,12 +149,15 @@ public class VisualizationView {
   }
 
 
+  private void chooseAnother() {
+    browseAgain = true;
+  }
+
   // update just the view to display next state
-  private Node update(Grid grid) {
-    myGrid.updateGrid();
-    gridP = new GridPane();
-    createGrid(gridP);
-    return gridP;
+  private Node update(Grid grid, GridPane pane) {
+    grid.updateGrid();
+    createGrid(pane);
+    return pane;
   }
 
 
@@ -170,6 +181,9 @@ public class VisualizationView {
 
     changeSim();
     result.getChildren().add(browseFolder);
+
+    chooseAnother = makeButton("Choose Another", event -> chooseAnother());
+    result.getChildren().add(chooseAnother);
 
     slider = createSlider("Change Speed");
     slider.setDisable(true);
@@ -208,9 +222,18 @@ public class VisualizationView {
           XMLParser parser = new XMLParser("game");
           simData = parser.getSimData(file);
           myModel.setSimData(simData);
-          myGrid = myModel.getGrid();
-          myGrid.updateColors();
-          update(myGrid);
+          if(browseAgain == false) {
+            myGrid = myModel.getGrid();
+            myGrid.updateColors();
+            update(myGrid,gridP);
+          }
+          else{
+            myGridTwo = myModel.getGrid();
+            myGridTwo.updateColors();
+            GridPane pane = new GridPane();
+            root.setRight(pane);
+            update(myGridTwo, pane);
+          }
         }
       }
     });
