@@ -2,9 +2,6 @@ package Visualization;
 
 import XML.SimData;
 import cellsociety.Grid;
-import cellsociety.Main;
-
-import java.lang.reflect.InvocationTargetException;
 import javafx.animation.Timeline;
 
 public class VisualizationModel {
@@ -43,7 +40,8 @@ public class VisualizationModel {
 
   public void slow(){ animation.setRate(.1); }
 
-  public void speed(){  animation.setRate(7); }
+  public void speed(double speed){
+    animation.setRate(speed); }
 
   public void stepThrough(){
     animation.pause();
