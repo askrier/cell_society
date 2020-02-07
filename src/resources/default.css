@@ -1,41 +1,35 @@
 .root {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Courier New";
+    -fx-font-size: 15pt;
+    -fx-font-family: "Georgia";
     -fx-base: rgb(132, 145, 47);
-    -fx-background-color: #E0FFFF;
+    -fx-background-color: #b7deae;
 }
 
 .button {
     -fx-text-fill: black;
-    -fx-background-color: #40E0D0;
+    -fx-background-color: #4abedd;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
     -fx-padding: 8;
 }
 
 .button:hover {
-    -fx-background-color: #00FFFF;
-}
-
-.combo-box-base {
-    -fx-text-base-color: #006464;
-    -fx-background-color: #DFB951;
-    -fx-border-radius: 20;
-    -fx-background-radius: 20;
-}
-.combo-box-base:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #fe9aaa;
 }
 
 .label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #006464;
-    -fx-opacity: 0.6;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Georgia";
+    -fx-text-fill: black;
+    -fx-opacity: .8;
 }
 
-.text-field {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Semibold";
+.slider .track{
+    -fx-background-color: linear-gradient(to right, #3a3a3a 20, #006464 20);
+
 }
+.slider .thumb{
+    -fx-background-color: #dcc6d1;
+}
+
 

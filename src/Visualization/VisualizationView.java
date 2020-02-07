@@ -6,11 +6,17 @@ import cellsociety.Cell;
 import cellsociety.Grid;
 import cellsociety.Main;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,6 +33,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,6 +41,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
@@ -49,31 +57,24 @@ import org.w3c.dom.events.EventTarget;
 public class VisualizationView {
 
   private static final String RESOURCES = "resources";
-  private static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
   private static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
   private static final String STYLESHEET = "default.css";
-
-  private ResourceBundle myResources;
-  //scene to send to application
-  private Scene myScene;
-  // all the buttons for the view
-  private Button startButton;
   private Button startSimulation;
   private Button stopSimulation;
   private Button speedSimulation;
   private Button slowSimulation;
   private Button stepSimulation;
   private Grid myGrid;
-  private  SimData simData;
-  private Scene myPage;
-  // create model data
+  private SimData simData;
   private VisualizationModel myModel;
   private GridPane gridPane;
   private GridPane gridP;
   private Button browseFolder;
-  private boolean stopped;
   private BorderPane root;
   private Timeline animation;
+  private double speed;
+  private Slider slider;
+  private Label sliderCaption;
 
   public VisualizationView(VisualizationModel model) {
     myModel = model;
@@ -83,97 +84,86 @@ public class VisualizationView {
   /**
    * Returns scene for the browser so it can be added to stage.
    */
-  public Scene makeScene (int width, int height) {
+  public Scene makeScene(int width, int height) {
     root = new BorderPane();
     gridPane = new GridPane();
     myGrid.updateColors();
-    gridPane.setAlignment(Pos.CENTER);
-    //Add the grid bricks to the root, this is the intial view/ intital settings grid
-    int i=0;
-    int j=0;
-    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
-      i++;
-      j=0;
-      for (Cell cell : list) {
-        j++;
-        gridPane.add(cell,i,j);
-      }
-    }
-    root.setCenter(gridPane);
-    root.setTop(makeInputPanel());
-    root.setBottom(makeInputField());
-    // create scene to hold UI
+    createGrid(gridPane);
+    root.setBottom(makeInputPanel());
+    root.setTop(makeInputField());
     Scene scene = new Scene(root, width, height);
-    // activate CSS styling
-    scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
+    scene.getStylesheets()
+        .add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
     return scene;
   }
 
+  private void createGrid(GridPane gridPane) {
+    gridPane.setAlignment(Pos.CENTER);
+    int i = 0;
+    int j = 0;
+    for (ArrayList<Cell> list : myGrid.getListOfCells()) {
+      i++;
+      j = 0;
+      for (Cell cell : list) {
+        j++;
+        gridPane.add(cell, i, j);
+      }
+    }
+    root.setCenter(gridPane);
+  }
+
   // Display given message as an error in the GUI
-  public void showError (String message) {
+  public void showError(String message) {
     Alert alert = new Alert(AlertType.ERROR);
     alert.setContentText(message);
     alert.showAndWait();
   }
 
-  // move to the next URL in the history
-  private void start () {
+  private void start() {
+    slider.setDisable(false);
     myModel.start(animation);
   }
-  private void stop(){
+
+  private void stop() {
     myModel.end();
-    stopped = true;
-    browseFolder.setDisable(!stopped);
   }
-  private void slow(){
+
+  private void slow() {
     myModel.slow();
   }
-  private void speed(){
-    myModel.speed();
+
+  private void speed() {
+    myModel.speed(speed);
   }
+
   private void stepThrough() {
     myModel.stepThrough();
   }
 
 
-
   // update just the view to display next state
-  private Node update (Grid grid) {
+  private Node update(Grid grid) {
     myGrid.updateGrid();
-    gridP=new GridPane();
-    gridP.setAlignment(Pos.CENTER);
-    //Add the grid bricks to the root, this is the intial view/ intital settings grid
-    int i=0;
-    int j=0;
-    for(ArrayList<Cell> list: myGrid.getListOfCells()) {
-      i++;
-      j=0;
-      for (Cell cell : list) {
-        j++;
-        gridP.add(cell,i,j);
-      }
-    }
-    root.setCenter(gridP);
-      return gridP;
+    gridP = new GridPane();
+    createGrid(gridP);
+    return gridP;
   }
 
 
-  private Node makeInputPanel () {
+  private Node makeInputPanel(){
     HBox result = new HBox();
-
+    result.setSpacing(5);
     startSimulation = makeButton("Start", event -> start());
     result.getChildren().add(startSimulation);
-
 
     stopSimulation = makeButton("Stop", event -> stop());
     result.getChildren().add(stopSimulation);
 
+    slowSimulation = makeButton("Slow", event -> slow());
+   // result.getChildren().add(slowSimulation);
 
-    slowSimulation = makeButton("Slow",event -> slow());
-    result.getChildren().add(slowSimulation);
-
-    speedSimulation = makeButton("Speed", event-> speed());
-    result.getChildren().add(speedSimulation);
+    speedSimulation = makeButton("Speed", event -> speed());
+  //  result.getChildren().add(speedSimulation);
 
     stepSimulation = makeButton("Step", event -> stepThrough());
     result.getChildren().add(stepSimulation);
@@ -181,7 +171,30 @@ public class VisualizationView {
     changeSim();
     result.getChildren().add(browseFolder);
 
+    slider = createSlider("Change Speed");
+    slider.setDisable(true);
+    result.getChildren().add(slider);
+    result.getChildren().add(sliderCaption);
+
     return result;
+  }
+
+
+  private Slider createSlider(String property){
+    Slider slider = new Slider();
+    slider.setMin(0);
+    slider.setMax(6);
+    sliderCaption = new Label(property);
+    slider.setBlockIncrement(1);
+    slider.valueProperty().addListener(new ChangeListener<Number>() {
+      @Override
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+          Number newValue) {
+        speed = newValue.doubleValue();
+        speed();
+      }
+    });
+    return slider;
   }
 
   private void changeSim() {
@@ -191,24 +204,19 @@ public class VisualizationView {
       public void handle(ActionEvent event) {
         Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
-        if(file!=null){
-
+        if (file != null) {
           XMLParser parser = new XMLParser("game");
           simData = parser.getSimData(file);
           myModel.setSimData(simData);
-            myGrid = myModel.getGrid();
-            myGrid.updateColors();
-            update(myGrid);
-
-
+          myGrid = myModel.getGrid();
+          myGrid.updateColors();
+          update(myGrid);
         }
       }
     });
-    browseFolder.setDisable(!stopped);
   }
 
-  // makes a button using either an image or a label
-  private Button makeButton (String property, EventHandler<ActionEvent> handler) {
+  private Button makeButton(String property, EventHandler<ActionEvent> handler) {
     Button result = new Button();
     String label = property;
     result.setText(label);
@@ -216,18 +224,20 @@ public class VisualizationView {
     return result;
   }
 
-  // make text field for input
-  private Text makeInputField () {
+  private Text makeInputField() {
     Text result = new Text();
+    result.setFont(Font.font("Apple Chancery", 20));
     result.setText(simData.getSimType() + ": by " + simData.getAuthor());
     return result;
   }
 
-  public void setSimData (SimData sim) {
+  public void setSimData(SimData sim) {
     simData = sim;
   }
 
-  public Grid getSetGrid () {return myGrid;}
+  public Grid getSetGrid() {
+    return myGrid;
+  }
 
   public void setAnimation(Timeline Animation) {
     animation = Animation;

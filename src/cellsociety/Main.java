@@ -25,6 +25,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -42,7 +43,6 @@ public class Main extends Application {
     private static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
     private static final double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
     private static final String RESOURCES = "resources";
-    private static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
     private static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
     private static final String STYLESHEET = "default.css";
     private static final double WIDTH = 800;
@@ -50,7 +50,6 @@ public class Main extends Application {
     private static final Paint BACKGROUND = Color.GRAY;
     private static Timeline animation;
     private static KeyFrame frame;
-    private Group root;
     private static final Dimension DEFAULT_SIZE = new Dimension(800, 800);
     private Desktop desktop = Desktop.getDesktop();
     private VisualizationModel model;
@@ -68,14 +67,21 @@ public class Main extends Application {
         Button startButton = start();
         startButton.setDisable(browsed);
         Text gameName = getSplashText();
-        layout.setTop(startButton);
+        HBox result = new HBox();
+        result.setSpacing(5);
         layout.setCenter(gameName);
         findSim(startButton);
-        layout.setBottom(browseFolder);
+        result.getChildren().add(startButton);
+        result.getChildren().add(browseFolder);
+        layout.setTop(result);
         Scene myScene = new Scene(layout, WIDTH, HEIGHT, BACKGROUND);
         stage.setScene(myScene);
         myScene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
         stage.show();
+        changeScene(stage, startButton);
+    }
+
+    private void changeScene(Stage stage, Button startButton) {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
