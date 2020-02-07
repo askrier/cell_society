@@ -64,21 +64,27 @@ public class VisualizationView {
   private Button speedSimulation;
   private Button slowSimulation;
   private Button stepSimulation;
+  private Button chooseAnother;
   private Grid myGrid;
+  private Grid myGridTwo;
   private SimData simData;
   private VisualizationModel myModel;
   private GridPane gridPane;
   private GridPane gridP;
+  private GridPane gridPTwo;
+  private GridPane gridPaneTwo;
   private Button browseFolder;
   private BorderPane root;
   private Timeline animation;
   private double speed;
   private Slider slider;
   private Label sliderCaption;
+  private boolean browseAgain;
 
   public VisualizationView(VisualizationModel model) {
     myModel = model;
     myGrid = myModel.getGrid();
+    myGridTwo = myModel.getGrid();
   }
 
   /**
@@ -88,20 +94,26 @@ public class VisualizationView {
     root = new BorderPane();
     gridPane = new GridPane();
     myGrid.updateColors();
-    createGrid(gridPane);
+    createGrid(myGrid, gridPane);
+    myGridTwo.updateColors();
+    gridPaneTwo = new GridPane();
+    createGrid(myGridTwo,gridPaneTwo);
+
     root.setBottom(makeInputPanel());
     root.setTop(makeInputField());
+    root.setCenter(gridPane);
+
     Scene scene = new Scene(root, width, height);
     scene.getStylesheets()
         .add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
     return scene;
   }
 
-  private void createGrid(GridPane gridPane) {
-    gridPane.setAlignment(Pos.CENTER);
+  private void createGrid(Grid grid,GridPane gridPane) {
+   gridPane.setAlignment(Pos.CENTER);
     int i = 0;
-    int j = 0;
-    for (ArrayList<Cell> list : myGrid.getListOfCells()) {
+    int j;
+    for (ArrayList<Cell> list : grid.getListOfCells()) {
       i++;
       j = 0;
       for (Cell cell : list) {
@@ -109,7 +121,12 @@ public class VisualizationView {
         gridPane.add(cell, i, j);
       }
     }
-    root.setCenter(gridPane);
+    if(browseAgain){
+      root.setRight(gridPane);
+    }
+    else {
+      root.setCenter(gridP);
+    }
   }
 
   // Display given message as an error in the GUI
@@ -126,6 +143,7 @@ public class VisualizationView {
 
   private void stop() {
     myModel.end();
+    browseAgain = false;
   }
 
   private void slow() {
@@ -141,12 +159,23 @@ public class VisualizationView {
   }
 
 
+  private void chooseAnother() {
+    int count =0;
+    count ++;
+    //this isnt workign correctly
+    if(count%2==0){
+      browseAgain = true;
+    }
+    else{
+      browseAgain = false;
+    }
+  }
+
   // update just the view to display next state
-  private Node update(Grid grid) {
-    myGrid.updateGrid();
-    gridP = new GridPane();
-    createGrid(gridP);
-    return gridP;
+  private Node update(Grid grid, GridPane pane) {
+    grid.updateGrid();
+    createGrid(grid,pane);
+    return pane;
   }
 
 
@@ -170,6 +199,10 @@ public class VisualizationView {
 
     changeSim();
     result.getChildren().add(browseFolder);
+
+    chooseAnother = makeButton("Turn on Dual Screen", event -> chooseAnother());
+    result.getChildren().add(chooseAnother);
+    chooseAnother.setId("choose-another");
 
     slider = createSlider("Change Speed");
     slider.setDisable(true);
@@ -208,10 +241,17 @@ public class VisualizationView {
           XMLParser parser = new XMLParser("game");
           simData = parser.getSimData(file);
           myModel.setSimData(simData);
-          myGrid = myModel.getGrid();
-          myGrid.updateColors();
-          update(myGrid);
-        }
+          if(browseAgain) {
+            myGridTwo = myModel.getGrid();
+            gridPTwo = new GridPane();
+            update(myGridTwo, gridPTwo);
+            myGrid.updateColors();
+          }
+         else{
+           myGrid = myModel.getGrid();
+           gridP = new GridPane();
+           update(myGrid,gridP);
+        }}
       }
     });
   }
@@ -237,6 +277,10 @@ public class VisualizationView {
 
   public Grid getSetGrid() {
     return myGrid;
+  }
+
+  public Grid getMyGridTwo(){
+    return myGridTwo;
   }
 
   public void setAnimation(Timeline Animation) {
