@@ -37,10 +37,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -80,6 +83,7 @@ public class VisualizationView {
   private Slider slider;
   private Label sliderCaption;
   private boolean browseAgain;
+  private int dualityCount =0;
 
   public VisualizationView(VisualizationModel model) {
     myModel = model;
@@ -160,14 +164,12 @@ public class VisualizationView {
 
 
   private void chooseAnother() {
-    int count =0;
-    count ++;
-    //this isnt workign correctly
-    if(count%2==0){
-      browseAgain = true;
+    dualityCount ++;
+    if(dualityCount%2==0){
+      browseAgain = false;
     }
     else{
-      browseAgain = false;
+      browseAgain = true;
     }
   }
 
@@ -200,7 +202,7 @@ public class VisualizationView {
     changeSim();
     result.getChildren().add(browseFolder);
 
-    chooseAnother = makeButton("Turn on Dual Screen", event -> chooseAnother());
+    chooseAnother = makeButton("Dual Screen", event -> chooseAnother());
     result.getChildren().add(chooseAnother);
     chooseAnother.setId("choose-another");
 
@@ -248,6 +250,7 @@ public class VisualizationView {
             myGrid.updateColors();
           }
          else{
+           root.getChildren().remove(root.getRight());
            myGrid = myModel.getGrid();
            gridP = new GridPane();
            update(myGrid,gridP);
