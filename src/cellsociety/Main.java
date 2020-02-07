@@ -38,9 +38,9 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
-    private static int FRAMES_PER_SECOND = 10;
-    private static int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-    private static double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
+    private static final int FRAMES_PER_SECOND = 10;
+    private static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
+    private static final double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
     private static final String RESOURCES = "resources";
     private static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
     private static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
@@ -149,7 +149,6 @@ public class Main extends Application {
         myGrid = display.getSetGrid();
         myGrid.updateGrid();
     }
-
 
     /**
      * Start of the program.
