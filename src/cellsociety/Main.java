@@ -154,6 +154,10 @@ public class Main extends Application {
         //calls grid update
         myGrid = display.getSetGrid();
         myGrid.updateGrid();
+        if(display.getMyGridTwo() !=null) {
+            Grid myGridTwo = display.getMyGridTwo();
+            myGridTwo.updateGrid();
+        }
     }
 
     /**

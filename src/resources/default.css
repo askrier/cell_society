@@ -32,4 +32,7 @@
     -fx-background-color: #dcc6d1;
 }
 
+#choose-another:pressed{
+    -fx-background-color: yellow;
+}
 
