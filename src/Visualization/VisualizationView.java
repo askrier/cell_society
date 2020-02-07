@@ -87,8 +87,6 @@ public class VisualizationView {
     root = new BorderPane();
     gridPane = new GridPane();
     myGrid.updateColors();
-    gridPane.setHgap(10);
-    gridPane.setVgap(10);
     gridPane.setAlignment(Pos.CENTER);
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
     int i=0;
@@ -143,8 +141,6 @@ public class VisualizationView {
   private Node update (Grid grid) {
     myGrid.updateGrid();
     gridP=new GridPane();
-    gridP.setHgap(10);
-    gridP.setVgap(10);
     gridP.setAlignment(Pos.CENTER);
     //Add the grid bricks to the root, this is the intial view/ intital settings grid
     int i=0;
