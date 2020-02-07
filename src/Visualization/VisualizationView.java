@@ -124,6 +124,9 @@ public class VisualizationView {
     if(browseAgain){
       root.setRight(gridPane);
     }
+    else {
+      root.setCenter(gridP);
+    }
   }
 
   // Display given message as an error in the GUI
@@ -157,7 +160,15 @@ public class VisualizationView {
 
 
   private void chooseAnother() {
-    browseAgain = true;
+    int count =0;
+    count ++;
+    //this isnt workign correctly
+    if(count%2==0){
+      browseAgain = true;
+    }
+    else{
+      browseAgain = false;
+    }
   }
 
   // update just the view to display next state
@@ -234,10 +245,12 @@ public class VisualizationView {
             myGridTwo = myModel.getGrid();
             gridPTwo = new GridPane();
             update(myGridTwo, gridPTwo);
+            myGrid.updateColors();
           }
-         else{ myGrid = myModel.getGrid();
-          myGrid.updateColors();
-          update(myGrid,gridP);
+         else{
+           myGrid = myModel.getGrid();
+           gridP = new GridPane();
+           update(myGrid,gridP);
         }}
       }
     });
