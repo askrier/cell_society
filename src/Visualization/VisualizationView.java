@@ -6,6 +6,7 @@ import cellsociety.Cell;
 import cellsociety.Grid;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,7 +30,9 @@ import javafx.stage.Stage;
 public class VisualizationView {
 
   private static final String RESOURCES = "resources";
+  private static final String TITLES = "UserInterface";
   private static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
+  public static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
   private static final String STYLESHEET = "default.css";
   private Button startSimulation;
   private Button stopSimulation;
@@ -55,12 +58,14 @@ public class VisualizationView {
   private final double sliderMin =0;
   private final double sliderMax =6;
   private int dualityCount =0;
+  private ResourceBundle myResources;
 
 
   public VisualizationView(VisualizationModel model) {
     myModel = model;
     myGrid = myModel.getGrid();
     myGridTwo = myModel.getGrid();
+    myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + TITLES);
   }
 
   /**
@@ -169,11 +174,11 @@ public class VisualizationView {
     changeSim();
     result.getChildren().add(browseFolder);
 
-    chooseAnother = makeButton("Dual Screen", event -> chooseAnother());
+    chooseAnother = makeButton("DualScreen", event -> chooseAnother());
     result.getChildren().add(chooseAnother);
     chooseAnother.setId("choose-another");
 
-    slider = createSlider("Change Speed");
+    slider = createSlider("ChangeSpeed");
     slider.setDisable(true);
     result.getChildren().add(slider);
     result.getChildren().add(sliderCaption);
@@ -186,7 +191,8 @@ public class VisualizationView {
     Slider slider = new Slider();
     slider.setMin(sliderMin);
     slider.setMax(sliderMax);
-    sliderCaption = new Label(property);
+    String label = myResources.getString(property);
+    sliderCaption = new Label(label);
     slider.valueProperty().addListener(new ChangeListener<Number>() {
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
@@ -227,7 +233,7 @@ public class VisualizationView {
 
   private Button makeButton(String property, EventHandler<ActionEvent> handler) {
     Button result = new Button();
-    String label = property;
+    String label = myResources.getString(property);
     result.setText(label);
     result.setOnAction(handler);
     return result;
@@ -235,8 +241,8 @@ public class VisualizationView {
 
   private Text makeInputField() {
     Text result = new Text();
-    result.setId("result");
-    result.setText(simData.getSimType() + ": by " + simData.getAuthor());
+    result.setId("Result");
+    result.setText(simData.getSimType() + myResources.getString("Result") + simData.getAuthor());
     return result;
   }
 
