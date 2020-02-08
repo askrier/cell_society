@@ -8,28 +8,21 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
@@ -48,8 +41,7 @@ public class Main extends Application {
     private static final double WIDTH = 800;
     private static final double HEIGHT = 800;
     private static final Paint BACKGROUND = Color.GRAY;
-    private static Timeline animation;
-    private static KeyFrame frame;
+    private Timeline animation;
     private static final Dimension DEFAULT_SIZE = new Dimension(800, 800);
     private Desktop desktop = Desktop.getDesktop();
     private VisualizationModel model;
@@ -58,7 +50,7 @@ public class Main extends Application {
     private Button browseFolder;
     private boolean browsed = true;
     private Grid myGrid;
-    private int distance =5;
+    private final int distance =5;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -90,7 +82,7 @@ public class Main extends Application {
                 display.setSimData(simData);
                 stage.setScene(display.makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
                 stage.show();
-                frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
+                KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
                 animation = new Timeline();
                 animation.setCycleCount(Timeline.INDEFINITE);
                 animation.getKeyFrames().add(frame);
