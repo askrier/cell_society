@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -37,6 +38,8 @@ public class Main extends Application {
     private static final double SECOND_DELAY = 10.0 / FRAMES_PER_SECOND;
     private static final String RESOURCES = "resources";
     private static final String DEFAULT_RESOURCE_FOLDER = "/" + RESOURCES + "/";
+    public static final String DEFAULT_RESOURCE_PACKAGE = RESOURCES + ".";
+    private static final String TITLES = "UserInterface";
     private static final String STYLESHEET = "default.css";
     private static final double WIDTH = 800;
     private static final double HEIGHT = 800;
@@ -51,10 +54,10 @@ public class Main extends Application {
     private boolean browsed = true;
     private Grid myGrid;
     private final int distance =5;
+    private ResourceBundle myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+ TITLES);;
 
     @Override
     public void start(Stage stage) throws Exception {
-        // create program specific components
         model = new VisualizationModel();
         BorderPane layout = new BorderPane();
         Button startButton = start();
@@ -115,17 +118,9 @@ public class Main extends Application {
 
     private Text getSplashText() throws IOException {
         Text gameName = new Text();
-
-        Properties properties = new Properties();
-        properties.load(new FileInputStream("src/resources/UserInterface.properties"));
-        Set p = properties.keySet();
-        Iterator i = p.iterator();
-        String key = "";
-        while (i.hasNext()) {
-            key = (String) i.next();
-        }
-        gameName.setText(properties.getProperty(key));
-        gameName.setId("gameName");
+        String label = myResources.getString("First");
+        gameName.setText(label);
+        gameName.setId("First");
         gameName.setTextAlignment(TextAlignment.CENTER);
         return gameName;
     }
@@ -138,7 +133,7 @@ public class Main extends Application {
 
     private Button browse (String property, EventHandler<ActionEvent> handler) {
         Button result = new Button();
-        String label = property;
+        String label = myResources.getString(property);
         result.setText(label);
         result.setOnAction(handler);
         return result;

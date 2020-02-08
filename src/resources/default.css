@@ -36,13 +36,13 @@
     -fx-background-color: yellow;
 }
 
-#result{
+#Result{
     -fx-font-size: 20pt;
     -fx-font-family:"Apple Chancery";
 
 }
 
-#gameName{
+#First{
     -fx-font-size: 60pt;
     -fx-font-family:"Apple Chancery";
 
