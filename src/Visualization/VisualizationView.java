@@ -132,11 +132,11 @@ public class VisualizationView {
 
   private void chooseAnother() {
     dualityCount ++;
+    browseAgain = true;
+    stepSimulation.setDisable(true);
     if(dualityCount%2==0){
       browseAgain = false;
-    }
-    else{
-      browseAgain = true;
+      stepSimulation.setDisable(false);
     }
   }
 
